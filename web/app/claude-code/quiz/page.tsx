@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { apiFetch, fetchMe, logout, type User } from "@/lib/auth";
 import { identifyUser, resetAnalytics, track } from "@/lib/analytics";
 
@@ -27,6 +27,20 @@ const DOMAIN_ACCENT: Record<string, string> = {
 };
 
 export default function QuizLauncher() {
+	return (
+		<Suspense
+			fallback={
+				<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+					<div className="font-sans text-[#555] animate-pulse">Loading…</div>
+				</main>
+			}
+		>
+			<QuizLauncherInner />
+		</Suspense>
+	);
+}
+
+function QuizLauncherInner() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const [me, setMe] = useState<User | null>(null);
