@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://magister.ai/sitemap.xml',
+    sitemap: 'https://whetstone.xors.xyz/sitemap.xml',
   };
 }

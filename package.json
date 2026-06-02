@@ -1,6 +1,6 @@
 {
-	"name": "www-magister",
-	"description": "Magister — AI-powered diagnostic engine for hybrid high-dosage tutoring.",
+	"name": "whetstone",
+	"description": "Whetstone — AI-powered diagnostic engine for hybrid high-dosage tutoring.",
 	"version": "1.0.0",
 	"private": true,
 	"workspaces": ["web", "server"],

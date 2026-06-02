@@ -1,6 +1,6 @@
-// Local Magister-side auth — runs ALONGSIDE the centralized xors auth
+// Local Whetstone-side auth — runs ALONGSIDE the centralized xors auth
 // (lib/xors-identity.ts) during the migration window. Existing users with
-// a Magister password keep working via this module; new users go through
+// a Whetstone password keep working via this module; new users go through
 // api.xors.xyz. The session resolver in xors-identity.ts checks the xors
 // cookie first, then falls back to the reps_session cookie this module
 // manages.

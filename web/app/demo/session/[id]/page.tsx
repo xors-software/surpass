@@ -247,7 +247,7 @@ export default function SessionPage() {
 				<div className="flex items-center gap-3">
 					<span className="font-sans text-xs font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
 					<span className="text-[#333] font-sans text-[10px]">/</span>
-					<span className="font-sans text-xs font-medium text-[#888]">Reps</span>
+					<span className="font-sans text-xs font-medium text-[#888]">Whetstone</span>
 					<span className="w-px h-4 bg-[#2a2a2a]" />
 					<span className="font-sans text-xs font-semibold px-2 py-0.5 rounded" style={{ color: accentColor, backgroundColor: accentColor + "15" }}>
 						{certLabel}
@@ -327,7 +327,7 @@ export default function SessionPage() {
 					{sending && (
 						isOscp ? (
 							<div className="font-mono text-[13px] text-[#ef4444]/60 animate-pulse">
-								[magister] analyzing...
+								[whetstone] analyzing...
 							</div>
 						) : (
 							<div className="flex items-start gap-3">
@@ -446,7 +446,7 @@ function TerminalBlock({ msg }: { msg: SessionMsg }) {
 	// Tutor response — render with code block detection
 	return (
 		<div className="mb-2">
-			<div className="font-mono text-[13px] text-[#ef4444]/50 mb-1 select-none">[magister]</div>
+			<div className="font-mono text-[13px] text-[#ef4444]/50 mb-1 select-none">[whetstone]</div>
 			<div className="font-sans text-[14px] text-[#ccc] leading-relaxed whitespace-pre-wrap">
 				<RenderTerminalContent text={msg.content} />
 			</div>

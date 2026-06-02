@@ -1,7 +1,7 @@
 /**
  * XORS centralized identity service integration.
  *
- * Magister defers authentication to api.xors.xyz (the apis/ repo). The flow
+ * Whetstone defers authentication to api.xors.xyz (the apis/ repo). The flow
  * mirrors the other consumer apps (slopless, seeker, contractor-tracker):
  *
  *   1. /login button → redirects browser to:
@@ -13,7 +13,7 @@
  *   4. /oauth route handler (web/app/oauth/route.ts) calls
  *      `decryptOAuthPayload` with the shared API_AES_KEY + API_IV_KEY,
  *      sets the `xors_session` cookie containing the decrypted session key.
- *   5. Subsequent authenticated requests include the cookie. The Magister
+ *   5. Subsequent authenticated requests include the cookie. The Whetstone
  *      API forwards the cookie value as `X-API-KEY` to
  *      api.xors.xyz/api/users/viewer to resolve the current user.
  *

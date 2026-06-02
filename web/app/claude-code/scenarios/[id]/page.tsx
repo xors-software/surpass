@@ -129,7 +129,7 @@ export default async function ScenarioDetail({
 						</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
 						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">
-							Reps
+							Whetstone
 						</span>
 					</Link>
 					<div className="flex gap-3">

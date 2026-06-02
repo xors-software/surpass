@@ -1,5 +1,5 @@
-// Client-side auth helpers. Magister now defers identity to api.xors.xyz
-// (see lib/xors.ts) — these helpers wrap the small Magister API surface
+// Client-side auth helpers. Whetstone now defers identity to api.xors.xyz
+// (see lib/xors.ts) — these helpers wrap the small Whetstone API surface
 // that survives that change: /api/auth/me (resolve current user) and
 // /api/auth/logout (clear the session cookie locally).
 //
@@ -43,7 +43,7 @@ export async function logout(): Promise<void> {
 // ---- Local-password sign-in + recovery codes ----
 //
 // Coexists with the centralized xors flow during the migration window.
-// Recovery codes only ever apply to local Magister accounts; xors-side
+// Recovery codes only ever apply to local Whetstone accounts; xors-side
 // users sign in via Google OAuth or password and recover via xors's
 // own email-based reset.
 
