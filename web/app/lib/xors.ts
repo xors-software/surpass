@@ -43,7 +43,7 @@ export function getXorsApiUrl(): string {
 // is the consumer app's domain. api.xors.xyz tags the user with this so
 // it knows which apps a given user has signed in to.
 export function getXorsAuthSource(): string {
-	return process.env.XORS_AUTH_SOURCE || "teacher.up.railway.app";
+	return process.env.XORS_AUTH_SOURCE || "whetstone.xors.xyz";
 }
 
 // Domain key registered in apis/common/constants.ts (REDIRECT_OPTIONS).

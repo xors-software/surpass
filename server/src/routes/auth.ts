@@ -41,7 +41,7 @@ const XORS_API_URL =
 	process.env.XORS_API_URL ||
 	process.env.NEXT_PUBLIC_XORS_API_URL ||
 	"https://api.xors.xyz";
-const XORS_AUTH_SOURCE = process.env.XORS_AUTH_SOURCE || "teacher.up.railway.app";
+const XORS_AUTH_SOURCE = process.env.XORS_AUTH_SOURCE || "whetstone.xors.xyz";
 const XORS_SESSION_COOKIE = "xors_session";
 // Match the 30-day cookie life set by the Next.js /oauth handler.
 const XORS_COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
