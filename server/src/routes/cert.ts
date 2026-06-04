@@ -56,7 +56,7 @@ function revealQuestion(q: CertQuestion, selected: "A" | "B" | "C" | "D" | null)
 export const certRoutes = new Elysia({ prefix: "/cert" })
 	// Resolve current user via the centralized xors session. Routes that
 	// need auth check `userId` and 401 if missing. See lib/xors-identity.ts
-	// for how the session key cookie maps to a local Magister user row.
+	// for how the session key cookie maps to a local Surpass user row.
 	.derive(async ({ request }) => {
 		const user = await resolveCurrentUser(request.headers);
 		return { userId: user?.id ?? null, user };

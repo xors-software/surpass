@@ -1,7 +1,7 @@
 /**
  * XORS centralized identity service integration.
  *
- * Magister defers authentication to api.xors.xyz (the apis/ repo). The flow
+ * Surpass defers authentication to api.xors.xyz (the apis/ repo). The flow
  * mirrors the other consumer apps (slopless, seeker, contractor-tracker):
  *
  *   1. /login button → redirects browser to:
@@ -9,11 +9,11 @@
  *   2. api.xors.xyz handles Google OAuth, finds-or-creates the user in its
  *      own users table, AES-encrypts the user's session key.
  *   3. api.xors.xyz redirects browser back to:
- *        https://teacher.up.railway.app/oauth?key=<aes-encrypted-hex>
+ *        https://surpass.xors.xyz/oauth?key=<aes-encrypted-hex>
  *   4. /oauth route handler (web/app/oauth/route.ts) calls
  *      `decryptOAuthPayload` with the shared API_AES_KEY + API_IV_KEY,
  *      sets the `xors_session` cookie containing the decrypted session key.
- *   5. Subsequent authenticated requests include the cookie. The Magister
+ *   5. Subsequent authenticated requests include the cookie. The Surpass
  *      API forwards the cookie value as `X-API-KEY` to
  *      api.xors.xyz/api/users/viewer to resolve the current user.
  *
@@ -43,7 +43,7 @@ export function getXorsApiUrl(): string {
 // is the consumer app's domain. api.xors.xyz tags the user with this so
 // it knows which apps a given user has signed in to.
 export function getXorsAuthSource(): string {
-	return process.env.XORS_AUTH_SOURCE || "teacher.up.railway.app";
+	return process.env.XORS_AUTH_SOURCE || "surpass.xors.xyz";
 }
 
 // Domain key registered in apis/common/constants.ts (REDIRECT_OPTIONS).

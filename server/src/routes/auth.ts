@@ -1,6 +1,6 @@
 // Auth routes — dual-auth during migration. Two paths coexist:
 //
-//   - Local Magister password (legacy): users who predate xors
+//   - Local Surpass password (legacy): users who predate xors
 //     centralization and haven't been manually migrated. Verified
 //     against users.password_hash, sets a reps_session cookie.
 //   - XORS centralized: api.xors.xyz/api/users/authenticate (or the
@@ -41,7 +41,7 @@ const XORS_API_URL =
 	process.env.XORS_API_URL ||
 	process.env.NEXT_PUBLIC_XORS_API_URL ||
 	"https://api.xors.xyz";
-const XORS_AUTH_SOURCE = process.env.XORS_AUTH_SOURCE || "teacher.up.railway.app";
+const XORS_AUTH_SOURCE = process.env.XORS_AUTH_SOURCE || "surpass.xors.xyz";
 const XORS_SESSION_COOKIE = "xors_session";
 // Match the 30-day cookie life set by the Next.js /oauth handler.
 const XORS_COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
@@ -97,7 +97,7 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
 	.post(
 		"/login",
 		async ({ body, set }) => {
-			// Local-first. Existing Magister users keep working without
+			// Local-first. Existing Surpass users keep working without
 			// ever calling xors, so a typo doesn't accidentally mint an
 			// xors account with the wrong password.
 			const localResult = await localPasswordLogin(body.email, body.password);
@@ -179,13 +179,13 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
 	// Recovery codes — local-only. A xors-side user has no local password
 	// to reset; if they want password recovery they'll use xors's email
 	// flow (or just sign in with Google). Codes are generated and
-	// consumed against the local Magister auth path.
+	// consumed against the local Surpass auth path.
 	.get("/recovery-codes/status", async ({ request, set }) => {
 		const token = readSessionToken(request.headers);
 		const user = await getUserBySession(token);
 		if (!user) {
 			set.status = 401;
-			return { error: "Sign in with your Reps password to view recovery code status." };
+			return { error: "Sign in with your Surpass password to view recovery code status." };
 		}
 		return await getRecoveryCodesStatus(user.id);
 	})
@@ -194,7 +194,7 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
 		const user = await getUserBySession(token);
 		if (!user) {
 			set.status = 401;
-			return { error: "Sign in with your Reps password to generate recovery codes." };
+			return { error: "Sign in with your Surpass password to generate recovery codes." };
 		}
 		const result = await generateRecoveryCodes(user.id);
 		if (result.kind === "user_not_found") {

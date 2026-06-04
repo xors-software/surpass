@@ -100,7 +100,7 @@ const app = new Elysia()
 		swagger({
 			documentation: {
 				info: {
-					title: "Reps API",
+					title: "Surpass API",
 					version: "3.0.0",
 					description: "Anthropic Claude Code certification practice engine",
 				},

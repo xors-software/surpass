@@ -2,7 +2,7 @@ import { Database } from "bun:sqlite";
 import { mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 
-const DB_PATH = join(import.meta.dir, "../../../data/magister.db");
+const DB_PATH = join(import.meta.dir, "../../../data/surpass.db");
 mkdirSync(dirname(DB_PATH), { recursive: true });
 
 const db = new Database(DB_PATH, { create: true });
