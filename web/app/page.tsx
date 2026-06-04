@@ -104,7 +104,7 @@ export default function Home() {
 					<div className="flex items-center gap-3">
 						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Reps</span>
+						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</div>
 					<div className="flex items-center gap-4">
 						<Link href="/ai-fundamentals" className="hidden sm:block font-sans text-sm text-[#888] hover:text-white">AI Fundamentals</Link>
@@ -174,7 +174,7 @@ export default function Home() {
 					<div className="text-center mb-14">
 						<h2 className="font-serif text-[36px] font-bold text-white tracking-[-0.02em] mb-3">Three certs. One AI tutor.</h2>
 						<p className="font-sans text-[15px] text-[#666] max-w-[500px] mx-auto">
-							Reps uses Claude to deliver Socratic, scenario-based prep that adapts to your knowledge gaps in real time.
+							Surpass uses Claude to deliver Socratic, scenario-based prep that adapts to your knowledge gaps in real time.
 						</p>
 					</div>
 					<div className="grid md:grid-cols-3 gap-4">
@@ -325,7 +325,7 @@ export default function Home() {
 						</p>
 						<p>
 							We&rsquo;re building the first{" "}
-							<span className="text-[#F5B800] font-semibold">AI-native certification platform</span>. Reps doesn&rsquo;t quiz you — it{" "}
+							<span className="text-[#F5B800] font-semibold">AI-native certification platform</span>. Surpass doesn&rsquo;t quiz you — it{" "}
 							<em>teaches</em> you, using the Socratic method powered by Claude. It adapts to your specific knowledge gaps. It produces diagnostic reports a human tutor would charge $200/hr to create.
 						</p>
 						<p>
@@ -359,7 +359,7 @@ export default function Home() {
 					<div className="flex items-center gap-2">
 						<span className="font-sans text-[12px] font-bold text-[#F5B800] tracking-wider">XORS</span>
 						<span className="font-sans text-[12px] text-[#333]">/</span>
-						<span className="font-sans text-[12px] text-[#555]">Reps</span>
+						<span className="font-sans text-[12px] text-[#555]">Surpass</span>
 					</div>
 					<span className="font-sans text-[12px] text-[#555]">Software done right multiplies what humans can do</span>
 				</div>

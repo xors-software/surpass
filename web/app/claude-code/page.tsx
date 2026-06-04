@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-	title: "Reps — Pass the Anthropic Claude Code certification",
+	title: "Surpass — Pass the Anthropic Claude Code certification",
 	description:
 		"The fastest path to passing the Anthropic Claude Code certification. Drill the six exam scenarios, hit 95% on simulated mocks, and see exactly where you're weak.",
 };
@@ -40,7 +40,7 @@ export default function ClaudeCodeCertLanding() {
 					<Link href="/" className="flex items-center gap-3">
 						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Reps</span>
+						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</Link>
 					<div className="flex items-center gap-4">
 						<Link href="/claude-code/scenarios" className="hidden sm:block font-sans text-sm text-[#888] hover:text-white">
@@ -72,7 +72,7 @@ export default function ClaudeCodeCertLanding() {
 						<span className="text-white">drill the scenarios, hit 95% on simulated mocks, then book it.</span>
 					</p>
 					<p className="font-serif text-[18px] text-[#888] leading-[1.6] mb-9 max-w-[560px] mx-auto">
-						Reps gives you the question bank, the mock exam, and the per-domain dashboard that tells you exactly where you're weak.
+						Surpass gives you the question bank, the mock exam, and the per-domain dashboard that tells you exactly where you're weak.
 					</p>
 					<div className="flex flex-col sm:flex-row gap-3 justify-center">
 						<Link
@@ -147,7 +147,7 @@ export default function ClaudeCodeCertLanding() {
 					<div className="mb-10">
 						<h2 className="font-serif text-[32px] font-bold text-white tracking-[-0.02em] mb-3">Tips from someone who passed</h2>
 						<p className="font-sans text-[14px] text-[#888]">
-							Notes from a recent passer. We baked these into how Reps drills.
+							Notes from a recent passer. We baked these into how Surpass drills.
 						</p>
 					</div>
 					<div className="space-y-4">
@@ -168,7 +168,7 @@ export default function ClaudeCodeCertLanding() {
 				<div className="max-w-[680px] mx-auto text-center">
 					<h2 className="font-serif text-[40px] font-bold text-white tracking-[-0.02em] mb-4">Drill till you pass.</h2>
 					<p className="font-sans text-[15px] text-[#888] mb-8 max-w-[460px] mx-auto">
-						720 is the pass line. 950 is when you stop drilling and book the exam. Reps tells you which line you're on.
+						720 is the pass line. 950 is when you stop drilling and book the exam. Surpass tells you which line you're on.
 					</p>
 					<Link
 						href="/claude-code/quiz"
@@ -184,7 +184,7 @@ export default function ClaudeCodeCertLanding() {
 					<Link href="/" className="flex items-center gap-2">
 						<span className="font-sans text-[12px] font-bold text-[#F5B800] tracking-wider">XORS</span>
 						<span className="font-sans text-[12px] text-[#333]">/</span>
-						<span className="font-sans text-[12px] text-[#555]">Reps</span>
+						<span className="font-sans text-[12px] text-[#555]">Surpass</span>
 					</Link>
 					<div className="flex gap-4">
 						<Link href="/claude-code/scenarios" className="font-sans text-[12px] text-[#555] hover:text-[#888]">Scenarios</Link>

@@ -86,7 +86,7 @@ export default function Dashboard() {
 					<Link href="/" className="flex items-center gap-2">
 						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Reps</span>
+						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</Link>
 					<div className="flex gap-3 items-center">
 						<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#F5B800] hover:underline">New drill</Link>

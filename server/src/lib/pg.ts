@@ -79,7 +79,7 @@ export async function runMigrations(): Promise<void> {
 	`;
 	// XORS centralized identity: `xors_user_id` is the viewer.id from
 	// api.xors.xyz. Set on first sign-in via the /oauth callback (matched
-	// by email for legacy rows). Unique so two Magister rows can't claim
+	// by email for legacy rows). Unique so two Surpass rows can't claim
 	// the same xors identity. Email is nullable now because xors users
 	// don't always have emails (some authenticate via wallet); we treat
 	// xors_user_id as the canonical identity.

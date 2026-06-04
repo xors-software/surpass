@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-	title: "Reps — AI Fundamentals · Lazer × Deloitte L&D",
+	title: "Surpass — AI Fundamentals · Lazer × Deloitte L&D",
 	description:
 		"A two-week AI adoption curriculum for engineers and PMs. Twelve cheatsheets, eight live sessions, and primer documents covering tokens, context, RAG, agents, prompt patterns, debugging, and more.",
 };
@@ -46,7 +46,7 @@ export default function AIFundamentalsPage() {
 					<Link href="/" className="flex items-center gap-3">
 						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Reps</span>
+						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</Link>
 					<div className="flex items-center gap-4">
 						<Link href="/" className="hidden sm:block font-sans text-sm text-[#888] hover:text-white">Home</Link>
@@ -218,7 +218,7 @@ export default function AIFundamentalsPage() {
 					<Link href="/" className="flex items-center gap-2">
 						<span className="font-sans text-[12px] font-bold text-[#F5B800] tracking-wider">XORS</span>
 						<span className="font-sans text-[12px] text-[#333]">/</span>
-						<span className="font-sans text-[12px] text-[#555]">Reps · AI L&D</span>
+						<span className="font-sans text-[12px] text-[#555]">Surpass · AI L&D</span>
 					</Link>
 					<span className="font-sans text-[11px] text-[#444]">Lazer × Deloitte L&D · v2 · 2026</span>
 				</div>

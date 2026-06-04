@@ -1,16 +1,16 @@
 // Bridge between the centralized XORS identity service (api.xors.xyz)
-// and Magister's local data model.
+// and Surpass's local data model.
 //
-// Background: Magister used to have its own users table with email +
+// Background: Surpass used to have its own users table with email +
 // password. Now api.xors.xyz owns identity for all the XORS apps —
-// Magister keeps a thin local users row only as the FK target for its
+// Surpass keeps a thin local users row only as the FK target for its
 // own data (quizzes, generated_questions, etc.). On every authenticated
 // request we:
 //
 //   1. Read the `xors_session` cookie set by web/app/oauth/route.ts.
 //   2. Hit api.xors.xyz/api/users/viewer with that as `X-API-KEY` to
 //      resolve the current user.
-//   3. Find the local Magister row by xors_user_id, falling back to
+//   3. Find the local Surpass row by xors_user_id, falling back to
 //      email for legacy rows that predate this change. Stamp the
 //      xors_user_id on legacy hits so step (3) finds them next time.
 //   4. Create a new local row if neither lookup matches.
@@ -29,8 +29,8 @@ const XORS_API_URL =
 
 const XORS_SESSION_COOKIE_NAME = "xors_session";
 
-export interface MagisterUser {
-	// Magister-internal id used by every FK in the local schema. NEVER the
+export interface SurpassUser {
+	// Surpass-internal id used by every FK in the local schema. NEVER the
 	// xors viewer.id directly — keeping a stable indirection means we
 	// could swap providers later without rewriting every quizzes.user_id.
 	id: string;
@@ -101,20 +101,20 @@ interface LocalUserRow {
 	xors_user_id: string | null;
 }
 
-function rowToUser(r: LocalUserRow): MagisterUser {
+function rowToUser(r: LocalUserRow): SurpassUser {
 	return {
 		id: r.id,
 		email: r.email,
 		displayName: r.display_name,
 		createdAt: r.created_at,
 		// The cast is safe because every code path that returns a
-		// MagisterUser has just ensured xors_user_id is set.
+		// SurpassUser has just ensured xors_user_id is set.
 		xorsUserId: r.xors_user_id as string,
 	};
 }
 
 /**
- * Find or create the local Magister user backing the given xors viewer.
+ * Find or create the local Surpass user backing the given xors viewer.
  *
  * Order:
  *   1. Lookup by xors_user_id — the steady-state path.
@@ -126,7 +126,7 @@ function rowToUser(r: LocalUserRow): MagisterUser {
  * The viewer's email is also written through to keep the local copy
  * fresh in case it changed at the xors level.
  */
-async function upsertFromViewer(viewer: XorsViewer): Promise<MagisterUser> {
+async function upsertFromViewer(viewer: XorsViewer): Promise<SurpassUser> {
 	const email = (viewer.email ?? "").toLowerCase();
 	const displayName = viewer.username ?? null;
 
@@ -193,7 +193,7 @@ async function upsertFromViewer(viewer: XorsViewer): Promise<MagisterUser> {
  */
 export async function resolveCurrentUser(
 	headers: Headers,
-): Promise<MagisterUser | null> {
+): Promise<SurpassUser | null> {
 	// 1. xors path
 	const sessionKey = readXorsSessionCookie(headers);
 	if (sessionKey) {
