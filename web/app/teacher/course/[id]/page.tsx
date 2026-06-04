@@ -138,7 +138,7 @@ export default function CourseDetailPage() {
 
 	if (loading) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading course...</div>
 			</main>
 		)
@@ -146,7 +146,7 @@ export default function CourseDetailPage() {
 
 	if (error && !course) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="text-center">
 					<p className="font-sans text-[#888] mb-4">{error}</p>
 					<Link href="/teacher" className="font-sans text-sm text-[#4f9cf7] hover:underline">
@@ -158,7 +158,7 @@ export default function CourseDetailPage() {
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] px-4 py-10">
+		<main className="min-h-dvh bg-[#1C1C1A] px-4 py-10">
 			<div className="w-full max-w-[640px] mx-auto">
 				<Link href="/teacher" className="block mb-8">
 					<div className="font-sans text-[13px] font-medium text-[#555] tracking-[0.06em] uppercase hover:text-[#888] transition-colors">
@@ -174,7 +174,7 @@ export default function CourseDetailPage() {
 
 				{/* Course Header */}
 				{editingCourse ? (
-					<div className="bg-[#141414] border border-[#2a2a2a] rounded-xl p-5 mb-8">
+					<div className="bg-[#232220] border border-[#2a2a2a] rounded-xl p-5 mb-8">
 						<div className="mb-4">
 							<label htmlFor="edit-name" className="block font-sans text-xs font-semibold text-[#888] uppercase tracking-[0.06em] mb-2">
 								Course name
@@ -184,7 +184,7 @@ export default function CourseDetailPage() {
 								type="text"
 								value={editName}
 								onChange={(e) => setEditName(e.target.value)}
-								className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] focus:outline-none focus:border-[#4f9cf7] transition-colors"
+								className="w-full bg-[#1C1C1A] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] focus:outline-none focus:border-[#4f9cf7] transition-colors"
 							/>
 						</div>
 						<div className="mb-4">
@@ -196,14 +196,14 @@ export default function CourseDetailPage() {
 								value={editDescription}
 								onChange={(e) => setEditDescription(e.target.value)}
 								rows={3}
-								className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] focus:outline-none focus:border-[#4f9cf7] transition-colors resize-none"
+								className="w-full bg-[#1C1C1A] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] focus:outline-none focus:border-[#4f9cf7] transition-colors resize-none"
 							/>
 						</div>
 						<div className="flex gap-2">
 							<button type="button" onClick={handleUpdateCourse} className="px-4 py-2.5 rounded-lg bg-[#4f9cf7] text-white font-sans text-sm font-semibold hover:bg-[#3d8be5] transition-colors">
 								Save
 							</button>
-							<button type="button" onClick={() => setEditingCourse(false)} className="px-4 py-2.5 rounded-lg bg-[#1a1a1a] text-[#888] font-sans text-sm font-medium hover:text-white transition-colors">
+							<button type="button" onClick={() => setEditingCourse(false)} className="px-4 py-2.5 rounded-lg bg-[#2a2722] text-[#888] font-sans text-sm font-medium hover:text-white transition-colors">
 								Cancel
 							</button>
 						</div>
@@ -245,9 +245,9 @@ export default function CourseDetailPage() {
 				</div>
 
 				{showMaterialForm && (
-					<div className="bg-[#141414] border border-[#2a2a2a] rounded-xl p-5 mb-4">
+					<div className="bg-[#232220] border border-[#2a2a2a] rounded-xl p-5 mb-4">
 						{/* Mode toggle */}
-						<div className="flex gap-1 mb-4 bg-[#0a0a0a] rounded-lg p-1">
+						<div className="flex gap-1 mb-4 bg-[#1C1C1A] rounded-lg p-1">
 							<button
 								type="button"
 								onClick={() => setMaterialMode("file")}
@@ -282,7 +282,7 @@ export default function CourseDetailPage() {
 								value={materialTitle}
 								onChange={(e) => setMaterialTitle(e.target.value)}
 								placeholder="e.g. Chapter 3: Vector Spaces"
-								className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors"
+								className="w-full bg-[#1C1C1A] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors"
 							/>
 						</div>
 
@@ -293,7 +293,7 @@ export default function CourseDetailPage() {
 								</label>
 								<label
 									htmlFor="mat-file"
-									className={`flex flex-col items-center justify-center w-full h-32 bg-[#0a0a0a] border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+									className={`flex flex-col items-center justify-center w-full h-32 bg-[#1C1C1A] border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
 										materialFile ? "border-[#4f9cf7]/40 bg-[#4f9cf7]/5" : "border-[#2a2a2a] hover:border-[#555]"
 									}`}
 								>
@@ -339,7 +339,7 @@ export default function CourseDetailPage() {
 									onChange={(e) => setMaterialContent(e.target.value)}
 									placeholder="Paste lecture notes, textbook excerpts, or any learning material..."
 									rows={10}
-									className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors resize-y font-mono text-sm leading-relaxed"
+									className="w-full bg-[#1C1C1A] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors resize-y font-mono text-sm leading-relaxed"
 								/>
 							</div>
 						)}
@@ -359,7 +359,7 @@ export default function CourseDetailPage() {
 				)}
 
 				{materials.length === 0 ? (
-					<div className="text-center py-12 bg-[#141414] border border-[#2a2a2a] rounded-xl">
+					<div className="text-center py-12 bg-[#232220] border border-[#2a2a2a] rounded-xl">
 						<div className="font-sans text-[#555] text-sm mb-1">No materials yet</div>
 						<div className="font-sans text-[#444] text-xs">
 							Add course materials so the tutor can help students study them.
@@ -370,12 +370,12 @@ export default function CourseDetailPage() {
 						{materials.map((material) => (
 							<div
 								key={material.id}
-								className="bg-[#141414] border border-[#2a2a2a] rounded-xl overflow-hidden"
+								className="bg-[#232220] border border-[#2a2a2a] rounded-xl overflow-hidden"
 							>
 								<button
 									type="button"
 									onClick={() => setExpandedMaterial(expandedMaterial === material.id ? null : material.id)}
-									className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-[#1a1a1a] transition-colors"
+									className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-[#2a2722] transition-colors"
 								>
 									<div className="flex-1 min-w-0">
 										<h3 className="font-sans text-sm font-semibold text-white truncate">
@@ -421,7 +421,7 @@ export default function CourseDetailPage() {
 
 				{/* Share Link */}
 				{materials.length > 0 && (
-					<div className="mt-8 p-4 bg-[#141414] border border-[#2a2a2a] rounded-xl">
+					<div className="mt-8 p-4 bg-[#232220] border border-[#2a2a2a] rounded-xl">
 						<div className="font-sans text-xs font-semibold text-[#888] uppercase tracking-[0.06em] mb-2">
 							Student link
 						</div>

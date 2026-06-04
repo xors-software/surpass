@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/brand/BrandMark"
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -34,13 +35,11 @@ const PASSER_TIPS = [
 
 export default function ClaudeCodeCertLanding() {
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8]">
-			<nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA]">
+			<nav className="fixed top-0 w-full z-50 bg-[#1C1C1A]/80 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-3">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</Link>
 					<div className="flex items-center gap-4">
 						<Link href="/claude-code/scenarios" className="hidden sm:block font-sans text-sm text-[#888] hover:text-white">
@@ -51,7 +50,7 @@ export default function ClaudeCodeCertLanding() {
 						</Link>
 						<Link
 							href="/claude-code/quiz"
-							className="font-sans text-sm font-medium px-4 py-1.5 rounded-lg bg-[#F5B800] text-black hover:bg-[#e0a800] transition-colors"
+							className="font-sans text-sm font-medium px-4 py-1.5 rounded-lg bg-[#E85328] text-black hover:bg-[#C7401C] transition-colors"
 						>
 							Start drilling
 						</Link>
@@ -61,8 +60,8 @@ export default function ClaudeCodeCertLanding() {
 
 			<section className="pt-36 pb-20 px-6">
 				<div className="max-w-[760px] mx-auto text-center">
-					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5B800]/10 border border-[#F5B800]/30 mb-7">
-						<span className="font-sans text-[11px] font-semibold text-[#F5B800] tracking-[0.08em] uppercase">Anthropic Claude Code Certification</span>
+					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E85328]/10 border border-[#E85328]/30 mb-7">
+						<span className="font-sans text-[11px] font-semibold text-[#E85328] tracking-[0.08em] uppercase">Anthropic Claude Code Certification</span>
 					</div>
 					<h1 className="font-serif text-[48px] sm:text-[64px] font-bold text-white leading-[1.05] tracking-[-0.03em] mb-6">
 						Pass the Claude<br />Code cert.
@@ -77,7 +76,7 @@ export default function ClaudeCodeCertLanding() {
 					<div className="flex flex-col sm:flex-row gap-3 justify-center">
 						<Link
 							href="/claude-code/quiz"
-							className="px-8 py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold hover:bg-[#e0a800] transition-colors"
+							className="px-8 py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold hover:bg-[#C7401C] transition-colors"
 						>
 							Start a quick drill
 						</Link>
@@ -92,7 +91,7 @@ export default function ClaudeCodeCertLanding() {
 				</div>
 			</section>
 
-			<section className="py-16 px-6 border-t border-[#1a1a1a] bg-[#080808]">
+			<section className="py-16 px-6 border-t border-[#2a2722] bg-[#080808]">
 				<div className="max-w-[1100px] mx-auto">
 					<div className="text-center mb-12">
 						<h2 className="font-serif text-[32px] font-bold text-white tracking-[-0.02em] mb-3">The six scenarios</h2>
@@ -105,7 +104,7 @@ export default function ClaudeCodeCertLanding() {
 							<Link
 								key={s.id}
 								href={`/claude-code/scenarios/${s.id}`}
-								className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-5 hover:border-[#444] transition-colors"
+								className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-5 hover:border-[#444] transition-colors"
 							>
 								<div className="flex items-center gap-3 mb-3">
 									<span
@@ -123,7 +122,7 @@ export default function ClaudeCodeCertLanding() {
 				</div>
 			</section>
 
-			<section className="py-20 px-6 border-t border-[#1a1a1a]">
+			<section className="py-20 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto">
 					<div className="text-center mb-12">
 						<h2 className="font-serif text-[32px] font-bold text-white tracking-[-0.02em] mb-3">Six ways to drill</h2>
@@ -133,7 +132,7 @@ export default function ClaudeCodeCertLanding() {
 					</div>
 					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
 						{MODES.map((m) => (
-							<div key={m.title} className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-5">
+							<div key={m.title} className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-5">
 								<h3 className="font-sans text-[14px] font-semibold text-white mb-2">{m.title}</h3>
 								<p className="font-sans text-[13px] text-[#888] leading-[1.6]">{m.body}</p>
 							</div>
@@ -142,7 +141,7 @@ export default function ClaudeCodeCertLanding() {
 				</div>
 			</section>
 
-			<section className="py-20 px-6 border-t border-[#1a1a1a] bg-[#080808]">
+			<section className="py-20 px-6 border-t border-[#2a2722] bg-[#080808]">
 				<div className="max-w-[820px] mx-auto">
 					<div className="mb-10">
 						<h2 className="font-serif text-[32px] font-bold text-white tracking-[-0.02em] mb-3">Tips from someone who passed</h2>
@@ -153,7 +152,7 @@ export default function ClaudeCodeCertLanding() {
 					<div className="space-y-4">
 						{PASSER_TIPS.map((t) => (
 							<div key={t.tip} className="flex gap-4 items-start">
-								<span className="w-1.5 h-1.5 rounded-full bg-[#F5B800] mt-3 shrink-0" />
+								<span className="w-1.5 h-1.5 rounded-full bg-[#E85328] mt-3 shrink-0" />
 								<div>
 									<div className="font-sans text-[15px] font-semibold text-white">{t.tip}</div>
 									<div className="font-sans text-[13px] text-[#888] leading-[1.65] mt-1">{t.detail}</div>
@@ -164,7 +163,7 @@ export default function ClaudeCodeCertLanding() {
 				</div>
 			</section>
 
-			<section className="py-24 px-6 border-t border-[#1a1a1a]">
+			<section className="py-24 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[680px] mx-auto text-center">
 					<h2 className="font-serif text-[40px] font-bold text-white tracking-[-0.02em] mb-4">Drill till you pass.</h2>
 					<p className="font-sans text-[15px] text-[#888] mb-8 max-w-[460px] mx-auto">
@@ -172,19 +171,17 @@ export default function ClaudeCodeCertLanding() {
 					</p>
 					<Link
 						href="/claude-code/quiz"
-						className="inline-block px-10 py-4 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold hover:bg-[#e0a800] transition-colors"
+						className="inline-block px-10 py-4 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold hover:bg-[#C7401C] transition-colors"
 					>
 						Start your first drill
 					</Link>
 				</div>
 			</section>
 
-			<footer className="py-10 px-6 border-t border-[#1a1a1a]">
+			<footer className="py-10 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto flex items-center justify-between flex-wrap gap-4">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[12px] font-bold text-[#F5B800] tracking-wider">XORS</span>
-						<span className="font-sans text-[12px] text-[#333]">/</span>
-						<span className="font-sans text-[12px] text-[#555]">Surpass</span>
+						<BrandMark />
 					</Link>
 					<div className="flex gap-4">
 						<Link href="/claude-code/scenarios" className="font-sans text-[12px] text-[#555] hover:text-[#888]">Scenarios</Link>

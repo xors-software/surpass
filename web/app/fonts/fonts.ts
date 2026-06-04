@@ -1,15 +1,15 @@
-import { Newsreader, DM_Sans, DM_Mono } from "next/font/google"
+import { Instrument_Serif, DM_Sans, DM_Mono } from "next/font/google"
 
-// Newsreader - Elegant serif for body text and headings
-const NewsreaderFont = Newsreader({
+// Instrument Serif - brandbook display serif (headings, prose, wordmark)
+const InstrumentSerifFont = Instrument_Serif({
 	subsets: ["latin"],
-	variable: "--font-newsreader",
+	variable: "--font-instrument-serif",
 	display: "swap",
-	weight: ["400", "500", "600", "700"],
+	weight: ["400"],
 	style: ["normal", "italic"],
 })
 
-// DM Sans - Clean sans-serif for UI elements, labels, stats
+// DM Sans - clean sans-serif for dense UI elements, labels, stats
 const DMSansFont = DM_Sans({
 	subsets: ["latin"],
 	variable: "--font-dm-sans",
@@ -17,7 +17,8 @@ const DMSansFont = DM_Sans({
 	weight: ["400", "500", "600", "700"],
 })
 
-// DM Mono - Monospace for technical details
+// DM Mono - kept for explicit numeric/technical monospace; the brandbook label
+// face is Courier New, set on --font-mono in globals.css.
 const DMMonoFont = DM_Mono({
 	subsets: ["latin"],
 	variable: "--font-dm-mono",
@@ -25,4 +26,4 @@ const DMMonoFont = DM_Mono({
 	weight: ["400", "500"],
 })
 
-export { NewsreaderFont, DMSansFont, DMMonoFont }
+export { InstrumentSerifFont, DMSansFont, DMMonoFont }

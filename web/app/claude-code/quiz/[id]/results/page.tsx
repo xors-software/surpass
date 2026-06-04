@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -58,7 +59,7 @@ function fmtDuration(sec: number) {
 function colorFor(pct: number) {
 	if (pct >= 95) return "#22c55e";
 	if (pct >= 80) return "#84cc16";
-	if (pct >= 70) return "#F5B800";
+	if (pct >= 70) return "#E85328";
 	if (pct >= 50) return "#f59e0b";
 	return "#ef4444";
 }
@@ -89,11 +90,11 @@ export default function ResultsPage() {
 
 	if (error) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center px-4 text-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center px-4 text-center">
 				<div>
 					<div className="font-serif text-[24px] text-white mb-2">No results yet</div>
 					<div className="font-sans text-[14px] text-[#888] mb-6">{error}</div>
-					<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#F5B800] hover:underline">Start a new drill →</Link>
+					<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#E85328] hover:underline">Start a new drill →</Link>
 				</div>
 			</main>
 		);
@@ -101,14 +102,14 @@ export default function ResultsPage() {
 
 	if (!results) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading…</div>
 			</main>
 		);
 	}
 
 	const headlineColor = colorFor(results.percent);
-	const passColor = results.examReady ? "#22c55e" : results.passLikely ? "#F5B800" : "#ef4444";
+	const passColor = results.examReady ? "#22c55e" : results.passLikely ? "#E85328" : "#ef4444";
 	const passLabel = results.examReady
 		? "Exam-ready"
 		: results.passLikely
@@ -116,13 +117,11 @@ export default function ResultsPage() {
 			: "Not yet ready";
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] pb-20">
-			<nav className="sticky top-0 z-10 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] pb-20">
+			<nav className="sticky top-0 z-10 bg-[#1C1C1A]/90 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[820px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</Link>
 					<div className="flex gap-3">
 						<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#888] hover:text-white">New drill</Link>
@@ -132,7 +131,7 @@ export default function ResultsPage() {
 			</nav>
 
 			<div className="max-w-[820px] mx-auto px-6 py-10">
-				<div className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-8 mb-8">
+				<div className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-8 mb-8">
 					<div className="flex items-baseline gap-3 mb-2">
 						<span
 							className="font-mono text-[12px] font-semibold uppercase tracking-wider"
@@ -157,7 +156,7 @@ export default function ResultsPage() {
 							<div className="font-sans text-[11px] text-[#555]">pass = 720 · target = 950</div>
 						</div>
 					</div>
-					<div className="mt-6 h-2 rounded-full bg-[#1a1a1a] overflow-hidden relative">
+					<div className="mt-6 h-2 rounded-full bg-[#2a2722] overflow-hidden relative">
 						<div
 							className="absolute inset-y-0 left-0"
 							style={{ width: `${results.percent}%`, backgroundColor: headlineColor }}
@@ -180,7 +179,7 @@ export default function ResultsPage() {
 								key={d.domain}
 								className="rounded-xl border p-4"
 								style={{
-									borderColor: d.total > 0 ? `${colorFor(d.percent)}30` : "#1a1a1a",
+									borderColor: d.total > 0 ? `${colorFor(d.percent)}30` : "#2a2722",
 									backgroundColor: d.total > 0 ? `${colorFor(d.percent)}08` : "#0d0d0d",
 								}}
 							>
@@ -207,7 +206,7 @@ export default function ResultsPage() {
 								key={s.scenario}
 								className="rounded-xl border p-4"
 								style={{
-									borderColor: s.total > 0 ? `${colorFor(s.percent)}30` : "#1a1a1a",
+									borderColor: s.total > 0 ? `${colorFor(s.percent)}30` : "#2a2722",
 									backgroundColor: s.total > 0 ? `${colorFor(s.percent)}08` : "#0d0d0d",
 								}}
 							>
@@ -232,7 +231,7 @@ export default function ResultsPage() {
 						</h2>
 						<div className="space-y-3">
 							{results.missedQuestions.map((m) => (
-								<div key={m.id} className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-5">
+								<div key={m.id} className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-5">
 									<div className="flex flex-wrap gap-1.5 mb-3">
 										<span className="px-2 py-0.5 rounded font-mono text-[10px] font-medium border border-[#222] text-[#888]">{m.domain}</span>
 										<span className="px-2 py-0.5 rounded font-mono text-[10px] font-medium border border-[#222] text-[#888]">{SCENARIO_LABELS[m.scenario]}</span>
@@ -261,7 +260,7 @@ export default function ResultsPage() {
 					</section>
 				)}
 
-				<section className="rounded-2xl border border-[#F5B800]/30 bg-[#F5B800]/5 p-6">
+				<section className="rounded-2xl border border-[#E85328]/30 bg-[#E85328]/5 p-6">
 					<h3 className="font-serif text-[18px] text-white mb-3">What to do next</h3>
 					{results.weakestDomains.length > 0 && (
 						<div className="mb-3">
@@ -271,7 +270,7 @@ export default function ResultsPage() {
 									<Link
 										key={d}
 										href={`/claude-code/quiz?prefill=domain:${d}`}
-										className="px-3 py-1 rounded-full font-mono text-[12px] text-[#F5B800] border border-[#F5B800]/40 hover:bg-[#F5B800]/10"
+										className="px-3 py-1 rounded-full font-mono text-[12px] text-[#E85328] border border-[#E85328]/40 hover:bg-[#E85328]/10"
 									>
 										{d}: {DOMAIN_LABELS[d]}
 									</Link>
@@ -287,7 +286,7 @@ export default function ResultsPage() {
 									<Link
 										key={s}
 										href={`/claude-code/scenarios/${s}`}
-										className="px-3 py-1 rounded-full font-sans text-[12px] text-[#F5B800] border border-[#F5B800]/40 hover:bg-[#F5B800]/10"
+										className="px-3 py-1 rounded-full font-sans text-[12px] text-[#E85328] border border-[#E85328]/40 hover:bg-[#E85328]/10"
 									>
 										Read: {SCENARIO_LABELS[s]}
 									</Link>
@@ -296,10 +295,10 @@ export default function ResultsPage() {
 						</div>
 					)}
 					<div className="flex flex-wrap gap-3">
-						<Link href="/claude-code/quiz" className="px-4 py-2 rounded-lg bg-[#F5B800] text-black font-sans text-sm font-bold">
+						<Link href="/claude-code/quiz" className="px-4 py-2 rounded-lg bg-[#E85328] text-black font-sans text-sm font-bold">
 							Run another drill
 						</Link>
-						<Link href="/claude-code/dashboard" className="px-4 py-2 rounded-lg border border-[#F5B80055] text-[#F5B800] font-sans text-sm font-semibold hover:bg-[#F5B800]/10">
+						<Link href="/claude-code/dashboard" className="px-4 py-2 rounded-lg border border-[#E8532855] text-[#E85328] font-sans text-sm font-semibold hover:bg-[#E85328]/10">
 							View dashboard
 						</Link>
 					</div>

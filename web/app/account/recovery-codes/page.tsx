@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -72,20 +73,18 @@ export default function RecoveryCodesPage() {
 
 	if (loading) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading…</div>
 			</main>
 		);
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] flex items-start justify-center px-4 py-16">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] flex items-start justify-center px-4 py-16">
 			<div className="w-full max-w-[520px]">
 				<Link href="/" className="block mb-10">
 					<div className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</div>
 				</Link>
 
@@ -99,7 +98,7 @@ export default function RecoveryCodesPage() {
 						<div className="mb-4 px-4 py-3 rounded-lg bg-amber-500/10 border border-amber-500/30 font-sans text-sm text-amber-300">
 							<strong className="font-semibold">Save these now.</strong> They won't be shown again. Each code works once.
 						</div>
-						<div className="rounded-xl bg-[#111] border border-[#1a1a1a] p-5 mb-4">
+						<div className="rounded-xl bg-[#232220] border border-[#2a2722] p-5 mb-4">
 							<div className="font-mono text-[14px] text-white space-y-1.5">
 								{codes.map((c, i) => (
 									<div key={c} className="flex gap-3">
@@ -113,7 +112,7 @@ export default function RecoveryCodesPage() {
 							<button
 								type="button"
 								onClick={copyAll}
-								className="flex-1 py-3 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#3a3a3a] text-white font-sans text-[14px] font-medium transition-colors"
+								className="flex-1 py-3 rounded-xl bg-[#2a2722] border border-[#2a2a2a] hover:border-[#3a3a3a] text-white font-sans text-[14px] font-medium transition-colors"
 							>
 								{copied ? "Copied ✓" : "Copy all"}
 							</button>
@@ -123,7 +122,7 @@ export default function RecoveryCodesPage() {
 								type="checkbox"
 								checked={confirming}
 								onChange={(e) => setConfirming(e.target.checked)}
-								className="mt-1 accent-[#F5B800]"
+								className="mt-1 accent-[#E85328]"
 							/>
 							<span className="font-sans text-[13px] text-[#888]">
 								I've saved these somewhere safe. I understand they won't be shown again.
@@ -133,7 +132,7 @@ export default function RecoveryCodesPage() {
 							type="button"
 							onClick={onConfirm}
 							disabled={!confirming}
-							className="w-full py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#e0a800] disabled:opacity-40 disabled:cursor-not-allowed"
+							className="w-full py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#C7401C] disabled:opacity-40 disabled:cursor-not-allowed"
 						>
 							Done
 						</button>
@@ -169,7 +168,7 @@ export default function RecoveryCodesPage() {
 							type="button"
 							onClick={onGenerate}
 							disabled={generating}
-							className="w-full py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#e0a800] disabled:opacity-40 disabled:cursor-not-allowed"
+							className="w-full py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#C7401C] disabled:opacity-40 disabled:cursor-not-allowed"
 						>
 							{generating ? "Generating…" : status?.hasCodes ? "Generate a new set (invalidates the old)" : "Generate recovery codes"}
 						</button>

@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
@@ -49,13 +50,11 @@ function LoginInner() {
 	const canSubmit = email.length > 3 && passwordOk && !loading;
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] flex items-center justify-center px-4">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] flex items-center justify-center px-4">
 			<div className="w-full max-w-[420px]">
 				<Link href="/" className="block mb-10">
 					<div className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</div>
 				</Link>
 
@@ -90,9 +89,9 @@ function LoginInner() {
 				</a>
 
 				<div className="my-6 flex items-center gap-3">
-					<div className="flex-1 h-px bg-[#1a1a1a]"></div>
+					<div className="flex-1 h-px bg-[#2a2722]"></div>
 					<span className="font-sans text-[11px] text-[#444] uppercase tracking-[0.1em]">or with password</span>
-					<div className="flex-1 h-px bg-[#1a1a1a]"></div>
+					<div className="flex-1 h-px bg-[#2a2722]"></div>
 				</div>
 
 				<form onSubmit={onSubmit} className="space-y-3">
@@ -105,7 +104,7 @@ function LoginInner() {
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder="you@lazer.com"
-							className="w-full px-4 py-3 rounded-xl bg-[#111] border border-[#1a1a1a] focus:border-[#F5B800] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
+							className="w-full px-4 py-3 rounded-xl bg-[#232220] border border-[#2a2722] focus:border-[#E85328] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
 						/>
 					</div>
 					<div>
@@ -117,7 +116,7 @@ function LoginInner() {
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							placeholder="At least 8 characters"
-							className="w-full px-4 py-3 rounded-xl bg-[#111] border border-[#1a1a1a] focus:border-[#F5B800] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
+							className="w-full px-4 py-3 rounded-xl bg-[#232220] border border-[#2a2722] focus:border-[#E85328] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
 						/>
 						{password.length > 0 && !passwordOk && (
 							<p className="mt-1.5 font-sans text-[11px] text-[#666]">{8 - password.length} more character{8 - password.length === 1 ? "" : "s"}</p>
@@ -129,14 +128,14 @@ function LoginInner() {
 					<button
 						type="submit"
 						disabled={!canSubmit}
-						className="w-full py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#e0a800] disabled:opacity-40 disabled:cursor-not-allowed"
+						className="w-full py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#C7401C] disabled:opacity-40 disabled:cursor-not-allowed"
 					>
 						{loading ? "Signing in…" : "Sign in"}
 					</button>
 				</form>
 
 				<p className="mt-6 text-center font-sans text-[12px] text-[#555]">
-					<Link href="/forgot-password" className="text-[#888] hover:text-[#F5B800] underline-offset-4 hover:underline transition-colors">
+					<Link href="/forgot-password" className="text-[#888] hover:text-[#E85328] underline-offset-4 hover:underline transition-colors">
 						Forgot your password?
 					</Link>
 				</p>
@@ -162,7 +161,7 @@ function errorMessageForCode(code: string | null): string | null {
 
 export default function LoginPage() {
 	return (
-		<Suspense fallback={<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center"><div className="font-sans text-[#555] animate-pulse">Loading…</div></main>}>
+		<Suspense fallback={<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center"><div className="font-sans text-[#555] animate-pulse">Loading…</div></main>}>
 			<LoginInner />
 		</Suspense>
 	);

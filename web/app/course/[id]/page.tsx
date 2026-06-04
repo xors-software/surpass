@@ -75,7 +75,7 @@ export default function CourseJoinPage() {
 
 	if (loading) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading course...</div>
 			</main>
 		)
@@ -83,7 +83,7 @@ export default function CourseJoinPage() {
 
 	if (!course) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="text-center">
 					<p className="font-sans text-[#888] mb-4">{error || "Course not found"}</p>
 					<Link href="/" className="font-sans text-sm text-[#4f9cf7] hover:underline">
@@ -95,7 +95,7 @@ export default function CourseJoinPage() {
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center px-4 py-10">
+		<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center px-4 py-10">
 			<div className="w-full max-w-[480px]">
 				<Link href="/" className="block mb-10">
 					<div className="font-sans text-[13px] font-medium text-[#555] tracking-[0.06em] uppercase">
@@ -103,7 +103,7 @@ export default function CourseJoinPage() {
 					</div>
 				</Link>
 
-				<div className="bg-[#141414] border border-[#2a2a2a] rounded-xl p-6 mb-6">
+				<div className="bg-[#232220] border border-[#2a2a2a] rounded-xl p-6 mb-6">
 					<div className="font-sans text-xs font-semibold text-[#4f9cf7] uppercase tracking-[0.06em] mb-2">
 						Course
 					</div>
@@ -130,7 +130,7 @@ export default function CourseJoinPage() {
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						placeholder="e.g. Marcus"
-						className="w-full bg-[#141414] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors"
+						className="w-full bg-[#232220] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors"
 						onKeyDown={(e) => e.key === "Enter" && startSession()}
 					/>
 				</div>

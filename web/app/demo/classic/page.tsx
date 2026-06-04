@@ -1,5 +1,6 @@
 "use client"
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import { Suspense, useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
@@ -42,12 +43,12 @@ const CLAUDE_CERT_TOPICS = [
 const LEVEL_CONFIG = {
 	cissp: { accent: "#4f9cf7", label: "CISSP", defaultTopic: "cissp-security-risk-mgmt", subtitle: "8 domains · $749 exam", tagline: "Think like a security manager" },
 	oscp: { accent: "#ef4444", label: "OSCP", defaultTopic: "oscp-enumeration", subtitle: "7 skill areas · $1,749 exam", tagline: "Hack boxes, write reports" },
-	"claude-cert": { accent: "#F5B800", label: "Claude CCA", defaultTopic: "claude-api-fundamentals", subtitle: "7 topic areas · $250 exam", tagline: "Build production-grade AI systems" },
+	"claude-cert": { accent: "#E85328", label: "Claude CCA", defaultTopic: "claude-api-fundamentals", subtitle: "7 topic areas · $250 exam", tagline: "Build production-grade AI systems" },
 } as const
 
 export default function DemoPage() {
 	return (
-		<Suspense fallback={<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center"><div className="font-sans text-[#555] animate-pulse">Loading...</div></main>}>
+		<Suspense fallback={<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center"><div className="font-sans text-[#555] animate-pulse">Loading...</div></main>}>
 			<DemoPageInner />
 		</Suspense>
 	)
@@ -109,13 +110,11 @@ function DemoPageInner() {
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center px-4 py-10">
+		<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center px-4 py-10">
 			<div className="w-full max-w-[540px]">
 				<Link href="/" className="block mb-8">
 					<div className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</div>
 				</Link>
 
@@ -137,7 +136,7 @@ function DemoPageInner() {
 								type="button"
 								onClick={() => switchEducationLevel(level)}
 								className={`flex-1 py-3 rounded-xl font-sans text-sm font-semibold transition-all ${
-									active ? "text-white shadow-lg" : "bg-[#141414] border border-[#2a2a2a] text-[#888] hover:border-[#555]"
+									active ? "text-white shadow-lg" : "bg-[#232220] border border-[#2a2a2a] text-[#888] hover:border-[#555]"
 								}`}
 								style={active ? { backgroundColor: c.accent } : undefined}
 							>
@@ -173,13 +172,13 @@ function DemoPageInner() {
 										backgroundColor: active ? config.accent + "15" : "#111",
 										borderWidth: 1,
 										borderStyle: "solid",
-										borderColor: active ? config.accent + "50" : "#1a1a1a",
+										borderColor: active ? config.accent + "50" : "#2a2722",
 									}}
 								>
 									<span
 										className="w-8 h-8 rounded-md flex items-center justify-center font-mono text-xs font-bold shrink-0"
 										style={{
-											backgroundColor: active ? config.accent : "#1a1a1a",
+											backgroundColor: active ? config.accent : "#2a2722",
 											color: active ? "white" : "#555",
 										}}
 									>

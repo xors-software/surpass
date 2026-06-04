@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -42,19 +43,17 @@ export default function ForgotPasswordPage() {
 	const canSubmit = email.length > 3 && codeOk && passwordOk && !loading;
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] flex items-start justify-center px-4 py-16">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] flex items-start justify-center px-4 py-16">
 			<div className="w-full max-w-[460px]">
 				<Link href="/" className="block mb-10">
 					<div className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</div>
 				</Link>
 
 				<h1 className="font-serif text-[32px] font-bold text-white tracking-[-0.02em] mb-2">Reset your password</h1>
 				<p className="font-sans text-[14px] text-[#888] mb-8 leading-[1.6]">
-					Enter your email, one of the recovery codes you saved, and a new password. Codes work once each. No recovery codes? <Link href="/login" className="text-[#aaa] hover:text-[#F5B800] underline-offset-4 hover:underline transition-colors">Sign in with Google</Link>, or message the project owner.
+					Enter your email, one of the recovery codes you saved, and a new password. Codes work once each. No recovery codes? <Link href="/login" className="text-[#aaa] hover:text-[#E85328] underline-offset-4 hover:underline transition-colors">Sign in with Google</Link>, or message the project owner.
 				</p>
 
 				<form onSubmit={onSubmit} className="space-y-3">
@@ -68,7 +67,7 @@ export default function ForgotPasswordPage() {
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder="you@lazer.com"
-							className="w-full px-4 py-3 rounded-xl bg-[#111] border border-[#1a1a1a] focus:border-[#F5B800] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
+							className="w-full px-4 py-3 rounded-xl bg-[#232220] border border-[#2a2722] focus:border-[#E85328] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
 						/>
 					</div>
 					<div>
@@ -80,7 +79,7 @@ export default function ForgotPasswordPage() {
 							value={code}
 							onChange={(e) => setCode(e.target.value)}
 							placeholder="xxxx-xxxx-xxxx-xxxx"
-							className="w-full px-4 py-3 rounded-xl bg-[#111] border border-[#1a1a1a] focus:border-[#F5B800] outline-none font-mono text-[14px] text-white placeholder:text-[#444]"
+							className="w-full px-4 py-3 rounded-xl bg-[#232220] border border-[#2a2722] focus:border-[#E85328] outline-none font-mono text-[14px] text-white placeholder:text-[#444]"
 						/>
 						{code.length > 0 && !codeOk && (
 							<p className="mt-1.5 font-sans text-[11px] text-[#666]">Should be 16 hex characters (dashes optional).</p>
@@ -95,7 +94,7 @@ export default function ForgotPasswordPage() {
 							value={newPassword}
 							onChange={(e) => setNewPassword(e.target.value)}
 							placeholder="At least 8 characters"
-							className="w-full px-4 py-3 rounded-xl bg-[#111] border border-[#1a1a1a] focus:border-[#F5B800] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
+							className="w-full px-4 py-3 rounded-xl bg-[#232220] border border-[#2a2722] focus:border-[#E85328] outline-none font-sans text-[14px] text-white placeholder:text-[#444]"
 						/>
 						{newPassword.length > 0 && !passwordOk && (
 							<p className="mt-1.5 font-sans text-[11px] text-[#666]">{8 - newPassword.length} more character{8 - newPassword.length === 1 ? "" : "s"}</p>
@@ -107,7 +106,7 @@ export default function ForgotPasswordPage() {
 					<button
 						type="submit"
 						disabled={!canSubmit}
-						className="w-full py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#e0a800] disabled:opacity-40 disabled:cursor-not-allowed"
+						className="w-full py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#C7401C] disabled:opacity-40 disabled:cursor-not-allowed"
 					>
 						{loading ? "Resetting…" : "Reset password"}
 					</button>
@@ -115,7 +114,7 @@ export default function ForgotPasswordPage() {
 
 				<p className="mt-6 text-center font-sans text-[12px] text-[#555]">
 					Remembered it?{" "}
-					<Link href="/login" className="text-[#888] hover:text-[#F5B800] underline-offset-4 hover:underline transition-colors">
+					<Link href="/login" className="text-[#888] hover:text-[#E85328] underline-offset-4 hover:underline transition-colors">
 						Back to sign in
 					</Link>
 				</p>

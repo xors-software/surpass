@@ -130,7 +130,7 @@ export default function FundamentalsQuizRunner() {
 
 	if (error) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center px-4">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center px-4">
 				<div className="max-w-md text-center">
 					<div className="font-serif text-[24px] text-white mb-2">Couldn't load this quiz</div>
 					<div className="font-sans text-[14px] text-[#888] mb-6">{error}</div>
@@ -142,18 +142,18 @@ export default function FundamentalsQuizRunner() {
 
 	if (!question) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading…</div>
 			</main>
 		);
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8]">
-			<div className="sticky top-0 z-10 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA]">
+			<div className="sticky top-0 z-10 bg-[#1C1C1A]/90 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[760px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/ai-fundamentals" className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
 						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">AI Fundamentals</span>
 					</Link>
@@ -161,7 +161,7 @@ export default function FundamentalsQuizRunner() {
 						{currentIndex + 1} / {totalQuestions}
 					</span>
 				</div>
-				<div className="h-1 bg-[#0a0a0a]">
+				<div className="h-1 bg-[#1C1C1A]">
 					<div className="h-full transition-all" style={{ width: `${progress}%`, backgroundColor: "#ec4899" }} />
 				</div>
 			</div>
@@ -183,7 +183,7 @@ export default function FundamentalsQuizRunner() {
 						const isSelected = selected === c.key;
 						const isCorrectChoice = reveal && reveal.correct === c.key;
 						const isWrongChoice = reveal && selected === c.key && !reveal.isCorrect;
-						let borderColor = "#1a1a1a";
+						let borderColor = "#2a2722";
 						let bg = "#111";
 						let labelColor = "#555";
 						if (reveal) {
@@ -228,7 +228,7 @@ export default function FundamentalsQuizRunner() {
 							{submitting ? "Checking…" : "Submit answer"}
 						</button>
 						<p className="mt-3 text-center font-mono text-[11px] text-[#555]">
-							<kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1a] border border-[#2a2a2a] text-[#888]">1</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1a] border border-[#2a2a2a] text-[#888]">4</kbd> to pick · <kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1a] border border-[#2a2a2a] text-[#888]">Enter</kbd> to submit
+							<kbd className="px-1.5 py-0.5 rounded bg-[#2a2722] border border-[#2a2a2a] text-[#888]">1</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-[#2a2722] border border-[#2a2a2a] text-[#888]">4</kbd> to pick · <kbd className="px-1.5 py-0.5 rounded bg-[#2a2722] border border-[#2a2a2a] text-[#888]">Enter</kbd> to submit
 						</p>
 					</>
 				)}
@@ -251,7 +251,7 @@ export default function FundamentalsQuizRunner() {
 							<div className="font-sans text-[14px] text-[#ddd] leading-[1.65]">{reveal.explanation}</div>
 						</div>
 						{Object.entries(reveal.distractorRationales).length > 0 && (
-							<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-5">
+							<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-5">
 								<div className="font-sans text-[12px] font-semibold uppercase tracking-wider text-[#888] mb-3">Why the others are wrong</div>
 								<div className="space-y-2.5">
 									{(Object.keys(reveal.distractorRationales) as ("A" | "B" | "C" | "D")[]).map((k) => (
