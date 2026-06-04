@@ -1,5 +1,6 @@
 "use client"
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
@@ -97,9 +98,7 @@ export default function HandoffPage() {
 			{/* Header */}
 			<header className="border-b border-[#2a2a2a] px-4 py-3 flex items-center justify-between">
 				<div className="flex items-center gap-3">
-					<span className="font-sans text-xs font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
-					<span className="text-[#333] font-sans text-[10px]">/</span>
-					<span className="font-sans text-xs font-medium text-[#888]">Surpass</span>
+					<BrandMark />
 					<span className="w-px h-4 bg-[#2a2a2a]" />
 					<span className="font-sans text-sm text-[#888]">Tutor Handoff</span>
 				</div>

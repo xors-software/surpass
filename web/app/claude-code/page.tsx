@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/brand/BrandMark"
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -38,9 +39,7 @@ export default function ClaudeCodeCertLanding() {
 			<nav className="fixed top-0 w-full z-50 bg-[#1C1C1A]/80 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-3">
-						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</Link>
 					<div className="flex items-center gap-4">
 						<Link href="/claude-code/scenarios" className="hidden sm:block font-sans text-sm text-[#888] hover:text-white">
@@ -182,9 +181,7 @@ export default function ClaudeCodeCertLanding() {
 			<footer className="py-10 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto flex items-center justify-between flex-wrap gap-4">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[12px] font-bold text-[#E85328] tracking-wider">XORS</span>
-						<span className="font-sans text-[12px] text-[#333]">/</span>
-						<span className="font-sans text-[12px] text-[#555]">Surpass</span>
+						<BrandMark />
 					</Link>
 					<div className="flex gap-4">
 						<Link href="/claude-code/scenarios" className="font-sans text-[12px] text-[#555] hover:text-[#888]">Scenarios</Link>

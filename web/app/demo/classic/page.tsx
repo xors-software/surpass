@@ -1,5 +1,6 @@
 "use client"
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import { Suspense, useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
@@ -113,9 +114,7 @@ function DemoPageInner() {
 			<div className="w-full max-w-[540px]">
 				<Link href="/" className="block mb-8">
 					<div className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</div>
 				</Link>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
@@ -146,9 +147,7 @@ function QuizLauncherInner() {
 				<div className="flex items-center justify-between mb-8">
 					<Link href="/" className="block">
 						<div className="flex items-center gap-2">
-							<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
-							<span className="text-[#333] font-sans text-xs">/</span>
-							<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+							<BrandMark />
 						</div>
 					</Link>
 					{me && (

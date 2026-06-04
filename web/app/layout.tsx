@@ -8,6 +8,7 @@ import { Toaster } from "@/components/toasts/Toaster"
 import AnalyticsProvider from "./components/AnalyticsProvider"
 
 export const metadata: Metadata = {
+	metadataBase: new URL(APP_CONFIG.URL),
 	title: `${APP_CONFIG.NAME} — Pass the Anthropic Claude Code certification`,
 	description: APP_CONFIG.DESCRIPTION,
 	openGraph: {

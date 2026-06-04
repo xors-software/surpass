@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand/BrandMark"
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -120,9 +121,7 @@ export default function ResultsPage() {
 			<nav className="sticky top-0 z-10 bg-[#1C1C1A]/90 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[820px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
-						<span className="text-[#333] font-sans text-xs">/</span>
-						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
+						<BrandMark />
 					</Link>
 					<div className="flex gap-3">
 						<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#888] hover:text-white">New drill</Link>
