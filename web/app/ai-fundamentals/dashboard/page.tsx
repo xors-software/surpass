@@ -65,18 +65,18 @@ export default function FundamentalsDashboard() {
 
 	if (!stats) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading…</div>
 			</main>
 		);
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8]">
-			<div className="sticky top-0 z-10 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA]">
+			<div className="sticky top-0 z-10 bg-[#1C1C1A]/90 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[1000px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/ai-fundamentals" className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
 						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">AI Fundamentals</span>
 					</Link>
@@ -99,7 +99,7 @@ export default function FundamentalsDashboard() {
 				</p>
 
 				{stats.totalQuizzes === 0 ? (
-					<div className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-8 text-center">
+					<div className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-8 text-center">
 						<div className="font-serif text-[20px] text-white mb-2">No drills yet</div>
 						<div className="font-sans text-[14px] text-[#888] mb-6 max-w-md mx-auto">
 							Start with a Quick Quiz to feel the format, then drill the topics where you want sharper recall.
@@ -111,21 +111,21 @@ export default function FundamentalsDashboard() {
 				) : (
 					<>
 						<div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
-							<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4">
+							<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4">
 								<div className="font-sans text-[11px] text-[#666] uppercase tracking-wider mb-1">Drills</div>
 								<div className="font-serif text-[28px] font-bold text-white">{stats.totalQuizzes}</div>
 							</div>
-							<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4">
+							<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4">
 								<div className="font-sans text-[11px] text-[#666] uppercase tracking-wider mb-1">Answered</div>
 								<div className="font-serif text-[28px] font-bold text-white">{stats.totalAnswered}</div>
 							</div>
-							<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4">
+							<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4">
 								<div className="font-sans text-[11px] text-[#666] uppercase tracking-wider mb-1">Best</div>
 								<div className="font-serif text-[28px] font-bold" style={{ color: colorFor(stats.bestPercent) }}>
 									{Math.round(stats.bestPercent)}%
 								</div>
 							</div>
-							<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4">
+							<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4">
 								<div className="font-sans text-[11px] text-[#666] uppercase tracking-wider mb-1">Latest</div>
 								<div className="font-serif text-[28px] font-bold" style={{ color: colorFor(stats.latestPercent) }}>
 									{Math.round(stats.latestPercent)}%
@@ -139,7 +139,7 @@ export default function FundamentalsDashboard() {
 								{stats.byTopic
 									.filter((t) => t.total > 0)
 									.map((t) => (
-										<div key={t.topic} className="rounded-lg border border-[#1a1a1a] bg-[#0d0d0d] p-3 flex items-center gap-3">
+										<div key={t.topic} className="rounded-lg border border-[#2a2722] bg-[#0d0d0d] p-3 flex items-center gap-3">
 											<div className="flex-1 min-w-0">
 												<div className="flex items-baseline justify-between gap-3">
 													<Link href={`/ai-fundamentals/quiz?prefill=topic:${t.topic}`} className="font-sans text-[13px] font-medium text-white hover:text-[#ec4899] truncate">
@@ -149,7 +149,7 @@ export default function FundamentalsDashboard() {
 														{t.correct}/{t.total}
 													</span>
 												</div>
-												<div className="mt-1 h-1 rounded-full bg-[#1a1a1a] overflow-hidden">
+												<div className="mt-1 h-1 rounded-full bg-[#2a2722] overflow-hidden">
 													<div className="h-full" style={{ width: `${t.percent}%`, backgroundColor: colorFor(t.percent) }} />
 												</div>
 											</div>

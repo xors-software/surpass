@@ -1,6 +1,6 @@
 "use client"
 
-import { NewsreaderFont, DMSansFont, DMMonoFont } from "@/fonts"
+import { InstrumentSerifFont, DMSansFont, DMMonoFont } from "@/fonts"
 import { useHasMounted } from "@/hooks"
 
 type ProviderType = {
@@ -16,7 +16,7 @@ export function GlobalStyleProvider({ children }: ProviderType) {
 				<style>
 					{`
           html {
-            --font-newsreader: ${NewsreaderFont.style.fontFamily}, Georgia, serif;
+            --font-instrument-serif: ${InstrumentSerifFont.style.fontFamily}, Georgia, serif;
             --font-dm-sans: ${DMSansFont.style.fontFamily}, system-ui, sans-serif;
             --font-dm-mono: ${DMMonoFont.style.fontFamily}, monospace;
           }

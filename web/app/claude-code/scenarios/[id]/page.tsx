@@ -34,7 +34,7 @@ const markdownComponents: Components = {
 		</h1>
 	),
 	h2: ({ children }) => (
-		<h2 className="font-serif text-[24px] font-bold text-white tracking-[-0.01em] mt-9 mb-3 border-b border-[#1a1a1a] pb-2">
+		<h2 className="font-serif text-[24px] font-bold text-white tracking-[-0.01em] mt-9 mb-3 border-b border-[#2a2722] pb-2">
 			{children}
 		</h2>
 	),
@@ -42,7 +42,7 @@ const markdownComponents: Components = {
 		<h3 className="font-sans text-[16px] font-bold text-white mt-7 mb-2">{children}</h3>
 	),
 	h4: ({ children }) => (
-		<h4 className="font-sans text-[14px] font-semibold text-[#F5B800] mt-5 mb-1.5 uppercase tracking-wider">
+		<h4 className="font-sans text-[14px] font-semibold text-[#E85328] mt-5 mb-1.5 uppercase tracking-wider">
 			{children}
 		</h4>
 	),
@@ -55,15 +55,15 @@ const markdownComponents: Components = {
 		<li className="font-sans text-[14px] text-[#bbb] leading-[1.7] pl-1 marker:text-[#444]">{children}</li>
 	),
 	blockquote: ({ children }) => (
-		<blockquote className="my-4 pl-4 border-l-2 border-[#F5B800] font-serif italic text-[15px] text-[#ccc] leading-[1.65]">
+		<blockquote className="my-4 pl-4 border-l-2 border-[#E85328] font-serif italic text-[15px] text-[#ccc] leading-[1.65]">
 			{children}
 		</blockquote>
 	),
-	hr: () => <hr className="my-8 border-[#1a1a1a]" />,
+	hr: () => <hr className="my-8 border-[#2a2722]" />,
 	strong: ({ children }) => <strong className="text-white font-semibold">{children}</strong>,
 	em: ({ children }) => <em className="italic">{children}</em>,
 	a: ({ href, children }) => (
-		<a href={href} className="text-[#F5B800] hover:underline" target="_blank" rel="noopener noreferrer">
+		<a href={href} className="text-[#E85328] hover:underline" target="_blank" rel="noopener noreferrer">
 			{children}
 		</a>
 	),
@@ -74,13 +74,13 @@ const markdownComponents: Components = {
 			return <code className={`font-mono text-[12px] text-[#bbb] leading-[1.6] ${className}`}>{children}</code>;
 		}
 		return (
-			<code className="font-mono text-[12px] px-1 py-0.5 rounded bg-[#1a1a1a] text-[#F5B800]">
+			<code className="font-mono text-[12px] px-1 py-0.5 rounded bg-[#2a2722] text-[#E85328]">
 				{children}
 			</code>
 		);
 	},
 	pre: ({ children }) => (
-		<pre className="my-4 rounded-lg border border-[#1a1a1a] bg-[#0a0a0a] p-4 overflow-x-auto">{children}</pre>
+		<pre className="my-4 rounded-lg border border-[#2a2722] bg-[#1C1C1A] p-4 overflow-x-auto">{children}</pre>
 	),
 	table: ({ children }) => (
 		<div className="my-4 overflow-x-auto">
@@ -89,7 +89,7 @@ const markdownComponents: Components = {
 	),
 	thead: ({ children }) => <thead className="border-b border-[#2a2a2a]">{children}</thead>,
 	th: ({ children }) => <th className="text-left px-3 py-2 font-semibold text-white">{children}</th>,
-	td: ({ children }) => <td className="px-3 py-2 border-b border-[#1a1a1a]">{children}</td>,
+	td: ({ children }) => <td className="px-3 py-2 border-b border-[#2a2722]">{children}</td>,
 };
 
 export default async function ScenarioDetail({
@@ -102,12 +102,12 @@ export default async function ScenarioDetail({
 
 	if (!file) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center text-center px-4">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center text-center px-4">
 				<div>
 					<div className="font-serif text-[24px] text-white mb-2">Unknown scenario</div>
 					<Link
 						href="/claude-code/scenarios"
-						className="font-sans text-[13px] text-[#F5B800] hover:underline"
+						className="font-sans text-[13px] text-[#E85328] hover:underline"
 					>
 						Back to all scenarios →
 					</Link>
@@ -120,11 +120,11 @@ export default async function ScenarioDetail({
 	const md = fs.readFileSync(mdPath, "utf8");
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] pb-20">
-			<nav className="sticky top-0 z-10 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] pb-20">
+			<nav className="sticky top-0 z-10 bg-[#1C1C1A]/90 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[820px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">
+						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">
 							XORS
 						</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
@@ -141,7 +141,7 @@ export default async function ScenarioDetail({
 						</Link>
 						<Link
 							href={`/claude-code/quiz?prefill=scenario:${id}`}
-							className="font-sans text-[13px] text-[#F5B800] hover:underline"
+							className="font-sans text-[13px] text-[#E85328] hover:underline"
 						>
 							Drill this scenario
 						</Link>
@@ -152,7 +152,7 @@ export default async function ScenarioDetail({
 			<div className="max-w-[820px] mx-auto px-6 pt-8">
 				<Link
 					href="/claude-code/scenarios"
-					className="font-sans text-[12px] text-[#666] hover:text-[#F5B800]"
+					className="font-sans text-[12px] text-[#666] hover:text-[#E85328]"
 				>
 					← All scenarios
 				</Link>

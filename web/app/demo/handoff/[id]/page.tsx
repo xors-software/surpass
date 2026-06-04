@@ -66,7 +66,7 @@ export default function HandoffPage() {
 
 	if (loading) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="text-center">
 					<div className="font-sans text-[#888] animate-pulse mb-2">Generating handoff report...</div>
 					<div className="font-sans text-xs text-[#555]">Analyzing session transcript and building knowledge map</div>
@@ -77,7 +77,7 @@ export default function HandoffPage() {
 
 	if (error || !handoff) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="text-center">
 					<p className="font-sans text-[#888] mb-4">{error || "Handoff not available."}</p>
 					<button type="button" onClick={() => router.push("/demo/classic")} className="font-sans text-sm text-[#4f9cf7] hover:underline">
@@ -93,11 +93,11 @@ export default function HandoffPage() {
 	const minorGaps = handoff.knowledgeGaps.filter((g) => g.severity === "minor")
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a]">
+		<main className="min-h-dvh bg-[#1C1C1A]">
 			{/* Header */}
 			<header className="border-b border-[#2a2a2a] px-4 py-3 flex items-center justify-between">
 				<div className="flex items-center gap-3">
-					<span className="font-sans text-xs font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+					<span className="font-sans text-xs font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 					<span className="text-[#333] font-sans text-[10px]">/</span>
 					<span className="font-sans text-xs font-medium text-[#888]">Surpass</span>
 					<span className="w-px h-4 bg-[#2a2a2a]" />
@@ -124,7 +124,7 @@ export default function HandoffPage() {
 
 				{/* Summary */}
 				<Section title="Session Summary">
-					<p className="font-sans text-[15px] text-[#e8e8e8] leading-relaxed">{handoff.summary}</p>
+					<p className="font-sans text-[15px] text-[#FAF8EA] leading-relaxed">{handoff.summary}</p>
 				</Section>
 
 				{/* Priorities */}
@@ -136,7 +136,7 @@ export default function HandoffPage() {
 									<span className="w-6 h-6 rounded-md bg-[#4f9cf7] text-white font-sans text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
 										{i + 1}
 									</span>
-									<span className="font-sans text-[15px] text-[#e8e8e8]">{p}</span>
+									<span className="font-sans text-[15px] text-[#FAF8EA]">{p}</span>
 								</div>
 							))}
 						</div>
@@ -147,7 +147,7 @@ export default function HandoffPage() {
 				{handoff.suggestedApproach && (
 					<Section title="Suggested Opening">
 						<div className="bg-[#4f9cf7]/5 border border-[#4f9cf7]/20 rounded-lg px-4 py-3">
-							<p className="font-sans text-[15px] text-[#e8e8e8] italic leading-relaxed">{handoff.suggestedApproach}</p>
+							<p className="font-sans text-[15px] text-[#FAF8EA] italic leading-relaxed">{handoff.suggestedApproach}</p>
 						</div>
 					</Section>
 				)}
@@ -172,8 +172,8 @@ export default function HandoffPage() {
 					<Section title="Misconceptions Identified">
 						<div className="space-y-3">
 							{handoff.misconceptions.map((m) => (
-								<div key={m.description} className="bg-[#141414] border border-[#2a2a2a] rounded-lg px-4 py-3">
-									<p className="font-sans text-[15px] text-[#e8e8e8] font-medium mb-1">{m.description}</p>
+								<div key={m.description} className="bg-[#232220] border border-[#2a2a2a] rounded-lg px-4 py-3">
+									<p className="font-sans text-[15px] text-[#FAF8EA] font-medium mb-1">{m.description}</p>
 									<p className="font-sans text-xs text-[#555] italic">&ldquo;{m.evidence}&rdquo;</p>
 								</div>
 							))}
@@ -198,8 +198,8 @@ export default function HandoffPage() {
 				<Section title="Problems Attempted">
 					<div className="space-y-2">
 						{handoff.problemsAttempted.map((p) => (
-							<div key={p.question} className="flex items-center justify-between gap-3 bg-[#141414] border border-[#2a2a2a] rounded-lg px-4 py-3">
-								<span className="font-sans text-sm text-[#e8e8e8] truncate">{p.question}</span>
+							<div key={p.question} className="flex items-center justify-between gap-3 bg-[#232220] border border-[#2a2a2a] rounded-lg px-4 py-3">
+								<span className="font-sans text-sm text-[#FAF8EA] truncate">{p.question}</span>
 								<div className="flex items-center gap-2 shrink-0">
 									<span className="font-mono text-xs text-[#555]">{p.messageCount} msgs</span>
 									<span className={`font-sans text-[11px] px-2 py-0.5 rounded-full font-medium ${
@@ -255,7 +255,7 @@ function GapGroup({ label, color, gaps }: { label: string; color: "red" | "amber
 			<div className="space-y-2">
 				{gaps.map((g) => (
 					<div key={g.concept} className={`${c.bg} border ${c.border} rounded-lg px-4 py-3`}>
-						<p className="font-sans text-[15px] text-[#e8e8e8] font-medium">{g.concept}</p>
+						<p className="font-sans text-[15px] text-[#FAF8EA] font-medium">{g.concept}</p>
 						{g.evidence && (
 							<p className="font-sans text-xs text-[#555] mt-1 italic">&ldquo;{g.evidence}&rdquo;</p>
 						)}

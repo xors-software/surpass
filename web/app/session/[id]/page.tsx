@@ -131,7 +131,7 @@ export default function SessionPage() {
 
 	if (loadError) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="text-center">
 					<p className="font-sans text-[#888] mb-4">{loadError}</p>
 					<button type="button" onClick={() => router.push("/")} className="font-sans text-sm text-[#4f9cf7] hover:underline">
@@ -144,14 +144,14 @@ export default function SessionPage() {
 
 	if (!session) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading session...</div>
 			</main>
 		)
 	}
 
 	return (
-		<main className="h-dvh bg-[#0a0a0a] flex flex-col">
+		<main className="h-dvh bg-[#1C1C1A] flex flex-col">
 			{/* Header */}
 			<header className="shrink-0 border-b border-[#2a2a2a] px-4 py-3 flex items-center justify-between">
 				<div className="flex items-center gap-3">
@@ -172,7 +172,7 @@ export default function SessionPage() {
 					<button
 						type="button"
 						onClick={endSession}
-						className="font-sans text-xs font-medium px-3 py-1.5 rounded-md bg-[#141414] border border-[#2a2a2a] text-[#888] hover:text-white hover:border-[#555] transition-colors"
+						className="font-sans text-xs font-medium px-3 py-1.5 rounded-md bg-[#232220] border border-[#2a2a2a] text-[#888] hover:text-white hover:border-[#555] transition-colors"
 					>
 						End session
 					</button>
@@ -190,7 +190,7 @@ export default function SessionPage() {
 							<div className="w-7 h-7 rounded-full bg-[#4f9cf7]/20 flex items-center justify-center shrink-0">
 								<span className="font-mono text-xs text-[#4f9cf7] font-bold">M</span>
 							</div>
-							<div className="bg-[#141414] border border-[#2a2a2a] rounded-xl rounded-tl-sm px-4 py-3">
+							<div className="bg-[#232220] border border-[#2a2a2a] rounded-xl rounded-tl-sm px-4 py-3">
 								<div className="flex gap-1">
 									<span className="w-1.5 h-1.5 rounded-full bg-[#555] animate-bounce" style={{ animationDelay: "0ms" }} />
 									<span className="w-1.5 h-1.5 rounded-full bg-[#555] animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -214,7 +214,7 @@ export default function SessionPage() {
 						onKeyDown={(e) => e.key === "Enter" && sendMessage()}
 						placeholder="Ask a question or share your answer..."
 						disabled={sending || session.status !== "active"}
-						className="flex-1 bg-[#141414] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors disabled:opacity-50"
+						className="flex-1 bg-[#232220] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors disabled:opacity-50"
 					/>
 					<button
 						type="button"
@@ -245,19 +245,19 @@ function ChatBubble({ msg, studentName }: { msg: SessionMsg; studentName: string
 			<div className={`max-w-[85%] ${isTutor ? "" : "text-right"}`}>
 				<div className={`rounded-xl px-4 py-3 ${
 					isTutor
-						? "bg-[#141414] border border-[#2a2a2a] rounded-tl-sm"
+						? "bg-[#232220] border border-[#2a2a2a] rounded-tl-sm"
 						: "bg-[#4f9cf7]/15 border border-[#4f9cf7]/20 rounded-tr-sm"
 				}`}>
 					<RenderMath
 						text={msg.content}
-						className={`font-sans text-[15px] leading-relaxed ${isTutor ? "text-[#e8e8e8]" : "text-white text-left"}`}
+						className={`font-sans text-[15px] leading-relaxed ${isTutor ? "text-[#FAF8EA]" : "text-white text-left"}`}
 					/>
 					{msg.diagrams && msg.diagrams.length > 0 && (
 						<div className="mt-3 space-y-3">
 							{msg.diagrams.map((svg, i) => (
 								<div
 									key={`diagram-${i}`}
-									className="bg-[#0a0a0a] rounded-lg p-3 border border-[#2a2a2a]"
+									className="bg-[#1C1C1A] rounded-lg p-3 border border-[#2a2a2a]"
 									dangerouslySetInnerHTML={{ __html: svg }}
 								/>
 							))}

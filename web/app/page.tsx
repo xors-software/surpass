@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const CERTIFICATIONS = [
 	{
 		name: "Claude Code Cert",
-		accent: "#F5B800",
+		accent: "#E85328",
 		price: "$200",
 		tagline: "Pass the Anthropic Claude Code certification",
 		description: "Full MC question bank, 50-question mock exam with timer, per-domain dashboard, scenario reader, and adaptive question generation that targets your weak spots.",
@@ -97,12 +97,12 @@ const HOW_IT_WORKS = [
 
 export default function Home() {
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA]">
 			{/* Nav */}
-			<nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-[#1a1a1a]">
+			<nav className="fixed top-0 w-full z-50 bg-[#1C1C1A]/80 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto px-6 h-14 flex items-center justify-between">
 					<div className="flex items-center gap-3">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
 						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</div>
@@ -112,7 +112,7 @@ export default function Home() {
 						<Link href="/claude-code/dashboard" className="hidden sm:block font-sans text-sm text-[#888] hover:text-white">Dashboard</Link>
 						<Link
 							href="/claude-code/quiz"
-							className="font-sans text-sm font-medium px-4 py-1.5 rounded-lg bg-[#F5B800] text-black hover:bg-[#e0a800] transition-colors"
+							className="font-sans text-sm font-medium px-4 py-1.5 rounded-lg bg-[#E85328] text-black hover:bg-[#C7401C] transition-colors"
 						>
 							Try the demo
 						</Link>
@@ -126,7 +126,7 @@ export default function Home() {
 					<div className="inline-flex gap-2 mb-8">
 						<span className="px-2.5 py-1 rounded-full bg-[#4f9cf7]/10 border border-[#4f9cf7]/30 font-sans text-xs font-medium text-[#4f9cf7]">CISSP</span>
 						<span className="px-2.5 py-1 rounded-full bg-[#ef4444]/10 border border-[#ef4444]/30 font-sans text-xs font-medium text-[#ef4444]">OSCP</span>
-						<span className="px-2.5 py-1 rounded-full bg-[#F5B800]/10 border border-[#F5B800]/30 font-sans text-xs font-medium text-[#F5B800]">Claude Code Cert</span>
+						<span className="px-2.5 py-1 rounded-full bg-[#E85328]/10 border border-[#E85328]/30 font-sans text-xs font-medium text-[#E85328]">Claude Code Cert</span>
 					</div>
 					<h1 className="font-serif text-[48px] sm:text-[64px] font-bold text-white leading-[1.05] tracking-[-0.03em] mb-6">
 						Certification prep<br />is broken.
@@ -139,7 +139,7 @@ export default function Home() {
 					</p>
 					<Link
 						href="/claude-code/quiz"
-						className="inline-block px-8 py-4 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold hover:bg-[#e0a800] transition-colors"
+						className="inline-block px-8 py-4 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold hover:bg-[#C7401C] transition-colors"
 					>
 						Start a free session
 					</Link>
@@ -148,7 +148,7 @@ export default function Home() {
 			</section>
 
 			{/* The problem — by the numbers */}
-			<section className="py-20 px-6 border-t border-[#1a1a1a] bg-[#080808]">
+			<section className="py-20 px-6 border-t border-[#2a2722] bg-[#080808]">
 				<div className="max-w-[1100px] mx-auto">
 					<div className="text-center mb-14">
 						<h2 className="font-serif text-[36px] font-bold text-white tracking-[-0.02em] mb-3">The certification industry is a racket</h2>
@@ -158,8 +158,8 @@ export default function Home() {
 					</div>
 					<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 						{BROKEN_THINGS.map((item) => (
-							<div key={item.title} className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-6">
-								<div className="font-mono text-[28px] font-bold text-[#F5B800] mb-2">{item.stat}</div>
+							<div key={item.title} className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-6">
+								<div className="font-mono text-[28px] font-bold text-[#E85328] mb-2">{item.stat}</div>
 								<h3 className="font-sans text-[14px] font-semibold text-white mb-2">{item.title}</h3>
 								<p className="font-sans text-[13px] text-[#666] leading-[1.6]">{item.description}</p>
 							</div>
@@ -169,7 +169,7 @@ export default function Home() {
 			</section>
 
 			{/* What we're building */}
-			<section className="py-20 px-6 border-t border-[#1a1a1a]">
+			<section className="py-20 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto">
 					<div className="text-center mb-14">
 						<h2 className="font-serif text-[36px] font-bold text-white tracking-[-0.02em] mb-3">Three certs. One AI tutor.</h2>
@@ -181,7 +181,7 @@ export default function Home() {
 						{CERTIFICATIONS.map((cert) => (
 							<div
 								key={cert.name}
-								className="rounded-2xl border border-[#2a2a2a] bg-[#111] p-6 hover:border-[#444] transition-colors group relative"
+								className="rounded-2xl border border-[#2a2a2a] bg-[#232220] p-6 hover:border-[#444] transition-colors group relative"
 							>
 								{cert.badge && (
 									<span
@@ -237,7 +237,7 @@ export default function Home() {
 			</section>
 
 			{/* AI Fundamentals — beginner track */}
-			<section className="py-16 px-6 border-t border-[#1a1a1a] bg-[#080808]">
+			<section className="py-16 px-6 border-t border-[#2a2722] bg-[#080808]">
 				<div className="max-w-[720px] mx-auto">
 					<div className="rounded-2xl border border-[#ec4899]/20 bg-[#ec4899]/5 p-8">
 						<div className="flex items-center gap-3 mb-4">
@@ -266,7 +266,7 @@ export default function Home() {
 			</section>
 
 			{/* OSCP VM Labs callout */}
-			<section className="py-16 px-6 border-t border-[#1a1a1a]">
+			<section className="py-16 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[720px] mx-auto">
 					<div className="rounded-2xl border border-[#ef4444]/20 bg-[#ef4444]/5 p-8">
 						<div className="flex items-center gap-3 mb-4">
@@ -289,7 +289,7 @@ export default function Home() {
 			</section>
 
 			{/* How it works */}
-			<section className="py-20 px-6 border-t border-[#1a1a1a]">
+			<section className="py-20 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[680px] mx-auto">
 					<h2 className="font-serif text-[36px] font-bold text-white tracking-[-0.02em] mb-12 text-center">
 						How it works
@@ -297,7 +297,7 @@ export default function Home() {
 					<div className="grid gap-8">
 						{HOW_IT_WORKS.map((step) => (
 							<div key={step.step} className="flex items-start gap-5">
-								<span className="font-mono text-[13px] font-bold text-[#F5B800] mt-1 shrink-0">{step.step}</span>
+								<span className="font-mono text-[13px] font-bold text-[#E85328] mt-1 shrink-0">{step.step}</span>
 								<div>
 									<h3 className="font-sans text-[15px] font-semibold text-white mb-1">{step.title}</h3>
 									<p className="font-sans text-[14px] text-[#888] leading-[1.6]">{step.description}</p>
@@ -309,7 +309,7 @@ export default function Home() {
 			</section>
 
 			{/* Disruption pitch */}
-			<section className="py-20 px-6 border-t border-[#1a1a1a] bg-[#080808]">
+			<section className="py-20 px-6 border-t border-[#2a2722] bg-[#080808]">
 				<div className="max-w-[680px] mx-auto">
 					<h2 className="font-serif text-[36px] font-bold text-white tracking-[-0.02em] mb-6 text-center">
 						Why this matters
@@ -325,7 +325,7 @@ export default function Home() {
 						</p>
 						<p>
 							We&rsquo;re building the first{" "}
-							<span className="text-[#F5B800] font-semibold">AI-native certification platform</span>. Surpass doesn&rsquo;t quiz you — it{" "}
+							<span className="text-[#E85328] font-semibold">AI-native certification platform</span>. Surpass doesn&rsquo;t quiz you — it{" "}
 							<em>teaches</em> you, using the Socratic method powered by Claude. It adapts to your specific knowledge gaps. It produces diagnostic reports a human tutor would charge $200/hr to create.
 						</p>
 						<p>
@@ -336,7 +336,7 @@ export default function Home() {
 			</section>
 
 			{/* CTA */}
-			<section className="py-24 px-6 border-t border-[#1a1a1a]">
+			<section className="py-24 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[680px] mx-auto text-center">
 					<h2 className="font-serif text-[44px] font-bold text-white tracking-[-0.02em] mb-4">
 						Stop memorizing.<br />Start understanding.
@@ -346,7 +346,7 @@ export default function Home() {
 					</p>
 					<Link
 						href="/claude-code/quiz"
-						className="inline-block px-10 py-4 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold hover:bg-[#e0a800] transition-colors"
+						className="inline-block px-10 py-4 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold hover:bg-[#C7401C] transition-colors"
 					>
 						Start a free session
 					</Link>
@@ -354,10 +354,10 @@ export default function Home() {
 			</section>
 
 			{/* Footer */}
-			<footer className="py-10 px-6 border-t border-[#1a1a1a]">
+			<footer className="py-10 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto flex items-center justify-between">
 					<div className="flex items-center gap-2">
-						<span className="font-sans text-[12px] font-bold text-[#F5B800] tracking-wider">XORS</span>
+						<span className="font-sans text-[12px] font-bold text-[#E85328] tracking-wider">XORS</span>
 						<span className="font-sans text-[12px] text-[#333]">/</span>
 						<span className="font-sans text-[12px] text-[#555]">Surpass</span>
 					</div>

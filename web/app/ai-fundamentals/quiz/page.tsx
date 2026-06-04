@@ -78,7 +78,7 @@ export default function FundamentalsQuizLauncher() {
 
 	if (!authChecked) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Checking session…</div>
 			</main>
 		);
@@ -88,12 +88,12 @@ export default function FundamentalsQuizLauncher() {
 	const comingSoonTopics = topics.filter((t) => t.questionCount === 0);
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] flex items-center justify-center px-4 py-10">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] flex items-center justify-center px-4 py-10">
 			<div className="w-full max-w-[640px]">
 				<div className="flex items-center justify-between mb-8">
 					<Link href="/ai-fundamentals" className="block">
 						<div className="flex items-center gap-2">
-							<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+							<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 							<span className="text-[#333] font-sans text-xs">/</span>
 							<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">AI Fundamentals</span>
 						</div>
@@ -127,7 +127,7 @@ export default function FundamentalsQuizLauncher() {
 								className="text-left rounded-xl px-4 py-3.5 transition-all border"
 								style={{
 									backgroundColor: active ? "#ec489915" : "#111",
-									borderColor: active ? "#ec489955" : "#1a1a1a",
+									borderColor: active ? "#ec489955" : "#2a2722",
 								}}
 							>
 								<div className={`font-sans text-[14px] font-semibold ${active ? "text-white" : "text-[#ccc]"}`}>{m.label}</div>
@@ -153,7 +153,7 @@ export default function FundamentalsQuizLauncher() {
 										className="text-left px-3.5 py-2.5 rounded-lg flex items-center gap-3 border"
 										style={{
 											backgroundColor: active ? "#ec489915" : "#111",
-											borderColor: active ? "#ec489950" : "#1a1a1a",
+											borderColor: active ? "#ec489950" : "#2a2722",
 										}}
 									>
 										<span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#ec4899" }} />
@@ -171,7 +171,7 @@ export default function FundamentalsQuizLauncher() {
 									{comingSoonTopics.map((t) => (
 										<div
 											key={t.id}
-											className="px-3.5 py-2.5 rounded-lg flex items-center gap-3 border border-[#1a1a1a] bg-[#0a0a0a] opacity-60"
+											className="px-3.5 py-2.5 rounded-lg flex items-center gap-3 border border-[#2a2722] bg-[#1C1C1A] opacity-60"
 										>
 											<span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#333]" />
 											<div className="flex-1 min-w-0">
@@ -201,7 +201,7 @@ export default function FundamentalsQuizLauncher() {
 									style={{
 										backgroundColor: count === n ? "#ec4899" : "#111",
 										color: count === n ? "white" : "#ccc",
-										borderColor: count === n ? "#ec4899" : "#1a1a1a",
+										borderColor: count === n ? "#ec4899" : "#2a2722",
 									}}
 								>
 									{n}

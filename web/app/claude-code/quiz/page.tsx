@@ -21,7 +21,7 @@ const SCENARIO_ACCENT: Record<string, string> = {
 const DOMAIN_ACCENT: Record<string, string> = {
 	D1: "#4f9cf7",
 	D2: "#22c55e",
-	D3: "#F5B800",
+	D3: "#E85328",
 	D4: "#a855f7",
 	D5: "#ef4444",
 };
@@ -30,7 +30,7 @@ export default function QuizLauncher() {
 	return (
 		<Suspense
 			fallback={
-				<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+				<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 					<div className="font-sans text-[#555] animate-pulse">Loading…</div>
 				</main>
 			}
@@ -134,19 +134,19 @@ function QuizLauncherInner() {
 
 	if (!authChecked) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Checking session…</div>
 			</main>
 		);
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] flex items-center justify-center px-4 py-10">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] flex items-center justify-center px-4 py-10">
 			<div className="w-full max-w-[640px]">
 				<div className="flex items-center justify-between mb-8">
 					<Link href="/" className="block">
 						<div className="flex items-center gap-2">
-							<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+							<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 							<span className="text-[#333] font-sans text-xs">/</span>
 							<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 						</div>
@@ -180,8 +180,8 @@ function QuizLauncherInner() {
 								}}
 								className="text-left rounded-xl px-4 py-3.5 transition-all border"
 								style={{
-									backgroundColor: active ? "#F5B80015" : "#111",
-									borderColor: active ? "#F5B80055" : "#1a1a1a",
+									backgroundColor: active ? "#E8532815" : "#111",
+									borderColor: active ? "#E8532855" : "#2a2722",
 								}}
 							>
 								<div className={`font-sans text-[14px] font-semibold ${active ? "text-white" : "text-[#ccc]"}`}>{m.label}</div>
@@ -199,7 +199,7 @@ function QuizLauncherInner() {
 						<div className="grid gap-1.5">
 							{scenarios.map((s) => {
 								const active = scenario === s.id;
-								const accent = SCENARIO_ACCENT[s.id] || "#F5B800";
+								const accent = SCENARIO_ACCENT[s.id] || "#E85328";
 								return (
 									<button
 										key={s.id}
@@ -208,7 +208,7 @@ function QuizLauncherInner() {
 										className="text-left px-3.5 py-2.5 rounded-lg flex items-center gap-3 border"
 										style={{
 											backgroundColor: active ? `${accent}15` : "#111",
-											borderColor: active ? `${accent}50` : "#1a1a1a",
+											borderColor: active ? `${accent}50` : "#2a2722",
 										}}
 									>
 										<span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: accent }} />
@@ -232,7 +232,7 @@ function QuizLauncherInner() {
 						<div className="grid gap-1.5">
 							{domains.map((d) => {
 								const active = domain === d.id;
-								const accent = DOMAIN_ACCENT[d.id] || "#F5B800";
+								const accent = DOMAIN_ACCENT[d.id] || "#E85328";
 								return (
 									<button
 										key={d.id}
@@ -241,12 +241,12 @@ function QuizLauncherInner() {
 										className="text-left px-3.5 py-2.5 rounded-lg flex items-center gap-3 border"
 										style={{
 											backgroundColor: active ? `${accent}15` : "#111",
-											borderColor: active ? `${accent}50` : "#1a1a1a",
+											borderColor: active ? `${accent}50` : "#2a2722",
 										}}
 									>
 										<span
 											className="w-9 h-9 rounded-md flex items-center justify-center font-mono text-xs font-bold shrink-0"
-											style={{ backgroundColor: active ? accent : "#1a1a1a", color: active ? "white" : "#555" }}
+											style={{ backgroundColor: active ? accent : "#2a2722", color: active ? "white" : "#555" }}
 										>
 											{d.id}
 										</span>
@@ -274,9 +274,9 @@ function QuizLauncherInner() {
 									onClick={() => setCount(n)}
 									className="flex-1 py-2.5 rounded-lg font-sans text-sm font-semibold transition-all border"
 									style={{
-										backgroundColor: count === n ? "#F5B800" : "#111",
+										backgroundColor: count === n ? "#E85328" : "#111",
 										color: count === n ? "black" : "#ccc",
-										borderColor: count === n ? "#F5B800" : "#1a1a1a",
+										borderColor: count === n ? "#E85328" : "#2a2722",
 									}}
 								>
 									{n}
@@ -296,7 +296,7 @@ function QuizLauncherInner() {
 					type="button"
 					onClick={startQuiz}
 					disabled={loading}
-					className="w-full py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#e0a800] disabled:opacity-50 disabled:cursor-not-allowed"
+					className="w-full py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#C7401C] disabled:opacity-50 disabled:cursor-not-allowed"
 				>
 					{loading ? "Starting..." : mode === "exam" ? "Start mock exam (50 Q · 120 min)" : `Start ${count}-question drill`}
 				</button>

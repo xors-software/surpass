@@ -40,11 +40,11 @@ const DOCS: { slug: string; title: string; tagline: string }[] = [
 
 export default function AIFundamentalsPage() {
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] pb-20">
-			<nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] pb-20">
+			<nav className="fixed top-0 w-full z-50 bg-[#1C1C1A]/80 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-3">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
 						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</Link>
@@ -78,7 +78,7 @@ export default function AIFundamentalsPage() {
 				</div>
 			</section>
 
-			<section id="cheatsheets" className="py-16 px-6 border-t border-[#1a1a1a] bg-[#080808] scroll-mt-20">
+			<section id="cheatsheets" className="py-16 px-6 border-t border-[#2a2722] bg-[#080808] scroll-mt-20">
 				<div className="max-w-[1100px] mx-auto">
 					<div className="mb-10">
 						<h2 className="font-serif text-[30px] font-bold text-white tracking-[-0.02em] mb-2">Cheatsheets</h2>
@@ -93,7 +93,7 @@ export default function AIFundamentalsPage() {
 								href={`/ai-fundamentals/cheatsheets/${c.slug}.pdf`}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-5 hover:border-[#ec4899]/60 transition-colors group"
+								className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-5 hover:border-[#ec4899]/60 transition-colors group"
 							>
 								<div className="flex items-start justify-between gap-3 mb-2">
 									<h3 className="font-sans text-[14px] font-semibold text-white group-hover:text-[#ec4899] transition-colors">{c.title}</h3>
@@ -109,7 +109,7 @@ export default function AIFundamentalsPage() {
 				</div>
 			</section>
 
-			<section className="py-16 px-6 border-t border-[#1a1a1a]">
+			<section className="py-16 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto">
 					<div className="mb-10">
 						<h2 className="font-serif text-[30px] font-bold text-white tracking-[-0.02em] mb-2">Live sessions</h2>
@@ -124,7 +124,7 @@ export default function AIFundamentalsPage() {
 								href={`/ai-fundamentals/sessions/${s.slug}.${s.ext}`}
 								target={s.ext === "pdf" ? "_blank" : undefined}
 								rel="noopener noreferrer"
-								className="block rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4 hover:border-[#ec4899]/60 transition-colors group"
+								className="block rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4 hover:border-[#ec4899]/60 transition-colors group"
 							>
 								<div className="flex items-start gap-4">
 									<span className="font-mono text-[11px] font-semibold text-[#ec4899] mt-1 shrink-0 w-14">{s.date}</span>
@@ -142,7 +142,7 @@ export default function AIFundamentalsPage() {
 				</div>
 			</section>
 
-			<section className="py-16 px-6 border-t border-[#1a1a1a] bg-[#080808]">
+			<section className="py-16 px-6 border-t border-[#2a2722] bg-[#080808]">
 				<div className="max-w-[1100px] mx-auto">
 					<div className="mb-10">
 						<h2 className="font-serif text-[30px] font-bold text-white tracking-[-0.02em] mb-2">Long-form primers</h2>
@@ -155,7 +155,7 @@ export default function AIFundamentalsPage() {
 							<a
 								key={d.slug}
 								href={`/ai-fundamentals/docs/${d.slug}.docx`}
-								className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-5 hover:border-[#ec4899]/60 transition-colors group"
+								className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-5 hover:border-[#ec4899]/60 transition-colors group"
 							>
 								<div className="flex items-start justify-between gap-3 mb-2">
 									<h3 className="font-sans text-[14px] font-semibold text-white group-hover:text-[#ec4899] transition-colors leading-snug">{d.title}</h3>
@@ -168,7 +168,7 @@ export default function AIFundamentalsPage() {
 				</div>
 			</section>
 
-			<section className="py-20 px-6 border-t border-[#1a1a1a]">
+			<section className="py-20 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[760px] mx-auto">
 					<div className="rounded-2xl border border-[#ec4899]/30 bg-gradient-to-br from-[#ec4899]/10 to-transparent p-8 sm:p-10">
 						<div className="font-sans text-[11px] font-semibold text-[#ec4899] uppercase tracking-[0.08em] mb-3">
@@ -198,7 +198,7 @@ export default function AIFundamentalsPage() {
 				</div>
 			</section>
 
-			<section className="py-20 px-6 border-t border-[#1a1a1a]">
+			<section className="py-20 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[680px] mx-auto text-center">
 					<h2 className="font-serif text-[30px] font-bold text-white tracking-[-0.02em] mb-4">Once you've drilled the basics</h2>
 					<p className="font-sans text-[14px] text-[#888] mb-8 max-w-[480px] mx-auto leading-[1.7]">
@@ -206,17 +206,17 @@ export default function AIFundamentalsPage() {
 					</p>
 					<Link
 						href="/claude-code"
-						className="inline-block px-8 py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold hover:bg-[#e0a800] transition-colors"
+						className="inline-block px-8 py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold hover:bg-[#C7401C] transition-colors"
 					>
 						Claude Code certification track →
 					</Link>
 				</div>
 			</section>
 
-			<footer className="py-10 px-6 border-t border-[#1a1a1a]">
+			<footer className="py-10 px-6 border-t border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto flex items-center justify-between flex-wrap gap-4">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[12px] font-bold text-[#F5B800] tracking-wider">XORS</span>
+						<span className="font-sans text-[12px] font-bold text-[#E85328] tracking-wider">XORS</span>
 						<span className="font-sans text-[12px] text-[#333]">/</span>
 						<span className="font-sans text-[12px] text-[#555]">Surpass · AI L&D</span>
 					</Link>

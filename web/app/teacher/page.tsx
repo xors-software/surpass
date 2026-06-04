@@ -70,7 +70,7 @@ export default function TeacherPage() {
 	}
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] px-4 py-10">
+		<main className="min-h-dvh bg-[#1C1C1A] px-4 py-10">
 			<div className="w-full max-w-[640px] mx-auto">
 				<Link href="/" className="block mb-10">
 					<div className="font-sans text-[13px] font-medium text-[#555] tracking-[0.06em] uppercase">
@@ -97,7 +97,7 @@ export default function TeacherPage() {
 				</div>
 
 				{showForm && (
-					<div className="bg-[#141414] border border-[#2a2a2a] rounded-xl p-5 mb-6">
+					<div className="bg-[#232220] border border-[#2a2a2a] rounded-xl p-5 mb-6">
 						<div className="mb-4">
 							<label htmlFor="course-name" className="block font-sans text-xs font-semibold text-[#888] uppercase tracking-[0.06em] mb-2">
 								Course name
@@ -108,7 +108,7 @@ export default function TeacherPage() {
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 								placeholder="e.g. Introduction to Linear Algebra"
-								className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors"
+								className="w-full bg-[#1C1C1A] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors"
 								onKeyDown={(e) => e.key === "Enter" && handleCreate()}
 							/>
 						</div>
@@ -122,7 +122,7 @@ export default function TeacherPage() {
 								onChange={(e) => setDescription(e.target.value)}
 								placeholder="What will students learn in this course?"
 								rows={3}
-								className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors resize-none"
+								className="w-full bg-[#1C1C1A] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none focus:border-[#4f9cf7] transition-colors resize-none"
 							/>
 						</div>
 						<button
@@ -156,7 +156,7 @@ export default function TeacherPage() {
 						{courses.map((course) => (
 							<div
 								key={course.id}
-								className="bg-[#141414] border border-[#2a2a2a] rounded-xl px-5 py-4 hover:border-[#3a3a3a] transition-colors group"
+								className="bg-[#232220] border border-[#2a2a2a] rounded-xl px-5 py-4 hover:border-[#3a3a3a] transition-colors group"
 							>
 								<div className="flex items-start justify-between gap-4">
 									<Link

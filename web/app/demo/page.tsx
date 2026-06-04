@@ -33,7 +33,7 @@ export default function DemoPage() {
 	}, [fetchCourses])
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center px-4 py-10">
+		<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center px-4 py-10">
 			<div className="w-full max-w-[520px]">
 				<Link href="/" className="block mb-10">
 					<div className="font-sans text-[13px] font-medium text-[#555] tracking-[0.06em] uppercase">
@@ -75,7 +75,7 @@ export default function DemoPage() {
 							<Link
 								key={course.id}
 								href={`/course/${course.id}`}
-								className="block bg-[#141414] border border-[#2a2a2a] rounded-xl px-5 py-4 hover:border-[#4f9cf7]/40 hover:bg-[#4f9cf7]/5 transition-all no-underline group"
+								className="block bg-[#232220] border border-[#2a2a2a] rounded-xl px-5 py-4 hover:border-[#4f9cf7]/40 hover:bg-[#4f9cf7]/5 transition-all no-underline group"
 							>
 								<h3 className="font-sans text-[15px] font-semibold text-white mb-1 group-hover:text-[#4f9cf7] transition-colors">
 									{course.name}

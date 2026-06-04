@@ -38,7 +38,7 @@ const SCENARIO_LABELS: Record<string, string> = {
 function colorFor(pct: number) {
 	if (pct >= 95) return "#22c55e";
 	if (pct >= 80) return "#84cc16";
-	if (pct >= 70) return "#F5B800";
+	if (pct >= 70) return "#E85328";
 	if (pct >= 50) return "#f59e0b";
 	return "#ef4444";
 }
@@ -69,7 +69,7 @@ export default function Dashboard() {
 
 	if (!stats) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading…</div>
 			</main>
 		);
@@ -80,16 +80,16 @@ export default function Dashboard() {
 	const passing = stats.bestEstimatedExamScore >= 720;
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8] pb-20">
-			<nav className="sticky top-0 z-10 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA] pb-20">
+			<nav className="sticky top-0 z-10 bg-[#1C1C1A]/90 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[1100px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
 						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</Link>
 					<div className="flex gap-3 items-center">
-						<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#F5B800] hover:underline">New drill</Link>
+						<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#E85328] hover:underline">New drill</Link>
 						<Link href="/claude-code/scenarios" className="font-sans text-[13px] text-[#888] hover:text-white">Scenarios</Link>
 						{me && (
 							<>
@@ -109,24 +109,24 @@ export default function Dashboard() {
 				</p>
 
 				{stats.totalQuizzes === 0 ? (
-					<div className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-10 text-center">
+					<div className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-10 text-center">
 						<div className="font-serif text-[20px] text-white mb-2">No drills yet</div>
 						<p className="font-sans text-[13px] text-[#888] mb-5 max-w-md mx-auto">
 							Start with a 10-question Quick Quiz to feel out the format, then move to scenario drills, then a full Mock Exam when you're scoring 90%+.
 						</p>
-						<Link href="/claude-code/quiz" className="inline-block px-6 py-3 rounded-xl bg-[#F5B800] text-black font-sans text-sm font-bold">
+						<Link href="/claude-code/quiz" className="inline-block px-6 py-3 rounded-xl bg-[#E85328] text-black font-sans text-sm font-bold">
 							Start your first drill
 						</Link>
 					</div>
 				) : (
 					<>
 						<div className="grid md:grid-cols-3 gap-3 mb-8">
-							<div className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-5">
+							<div className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-5">
 								<div className="font-sans text-[11px] text-[#666] uppercase tracking-wider mb-1">Drills completed</div>
 								<div className="font-mono text-[28px] font-bold text-white">{stats.totalQuizzes}</div>
 								<div className="font-sans text-[11px] text-[#555] mt-1">{stats.totalAnswered} questions answered</div>
 							</div>
-							<div className="rounded-2xl border border-[#1a1a1a] bg-[#0d0d0d] p-5">
+							<div className="rounded-2xl border border-[#2a2722] bg-[#0d0d0d] p-5">
 								<div className="font-sans text-[11px] text-[#666] uppercase tracking-wider mb-1">Career accuracy</div>
 								<div className="font-mono text-[28px] font-bold" style={{ color: colorFor(overall) }}>{Math.round(overall)}%</div>
 								<div className="font-sans text-[11px] text-[#555] mt-1">{stats.totalCorrect} correct</div>
@@ -134,14 +134,14 @@ export default function Dashboard() {
 							<div
 								className="rounded-2xl border p-5"
 								style={{
-									borderColor: ready ? "#22c55e40" : passing ? "#F5B80040" : "#1a1a1a",
-									backgroundColor: ready ? "#22c55e0D" : passing ? "#F5B8000D" : "#0d0d0d",
+									borderColor: ready ? "#22c55e40" : passing ? "#E8532840" : "#2a2722",
+									backgroundColor: ready ? "#22c55e0D" : passing ? "#E853280D" : "#0d0d0d",
 								}}
 							>
 								<div className="font-sans text-[11px] text-[#666] uppercase tracking-wider mb-1">Best mock score</div>
 								<div
 									className="font-mono text-[28px] font-bold"
-									style={{ color: ready ? "#22c55e" : passing ? "#F5B800" : "#888" }}
+									style={{ color: ready ? "#22c55e" : passing ? "#E85328" : "#888" }}
 								>
 									{stats.bestEstimatedExamScore || "—"}
 								</div>
@@ -155,7 +155,7 @@ export default function Dashboard() {
 							<h2 className="font-serif text-[22px] text-white tracking-[-0.01em] mb-4">By domain</h2>
 							<div className="space-y-2">
 								{stats.byDomain.map((d) => (
-									<div key={d.domain} className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4">
+									<div key={d.domain} className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4">
 										<div className="flex items-baseline justify-between mb-2">
 											<div>
 												<span className="font-mono text-[12px] font-bold text-[#888] mr-3">{d.domain}</span>
@@ -168,7 +168,7 @@ export default function Dashboard() {
 												<span className="font-mono text-[11px] text-[#555] ml-2">{d.correct}/{d.total}</span>
 											</div>
 										</div>
-										<div className="h-1.5 rounded-full bg-[#1a1a1a] overflow-hidden">
+										<div className="h-1.5 rounded-full bg-[#2a2722] overflow-hidden">
 											<div className="h-full transition-all" style={{ width: `${d.percent}%`, backgroundColor: colorFor(d.percent) }} />
 										</div>
 									</div>
@@ -180,14 +180,14 @@ export default function Dashboard() {
 							<h2 className="font-serif text-[22px] text-white tracking-[-0.01em] mb-4">By scenario</h2>
 							<div className="grid sm:grid-cols-2 gap-3">
 								{stats.byScenario.map((s) => (
-									<div key={s.scenario} className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4">
+									<div key={s.scenario} className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4">
 										<div className="flex items-baseline justify-between mb-2">
 											<span className="font-sans text-[14px] text-white">{SCENARIO_LABELS[s.scenario]}</span>
 											<span className="font-mono text-[14px] font-bold" style={{ color: colorFor(s.percent) }}>
 												{s.total === 0 ? "—" : `${Math.round(s.percent)}%`}
 											</span>
 										</div>
-										<div className="h-1 rounded-full bg-[#1a1a1a] overflow-hidden mb-2">
+										<div className="h-1 rounded-full bg-[#2a2722] overflow-hidden mb-2">
 											<div className="h-full transition-all" style={{ width: `${s.percent}%`, backgroundColor: colorFor(s.percent) }} />
 										</div>
 										<div className="flex items-center justify-between">
@@ -204,7 +204,7 @@ export default function Dashboard() {
 						{stats.rolling.length > 1 && (
 							<section className="mb-10">
 								<h2 className="font-serif text-[22px] text-white tracking-[-0.01em] mb-4">Trend</h2>
-								<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-5">
+								<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-5">
 									<div className="flex items-end gap-1 h-32">
 										{stats.rolling.map((r, i) => (
 											<div key={i} className="flex-1 flex flex-col items-center justify-end">

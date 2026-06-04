@@ -220,15 +220,15 @@ export default function QuizRunner() {
 
 	const isLast = currentIndex >= totalQuestions - 1;
 	const progress = useMemo(() => (totalQuestions ? ((currentIndex + 1) / totalQuestions) * 100 : 0), [currentIndex, totalQuestions]);
-	const accent = question ? SCENARIO_ACCENT[question.scenario] || "#F5B800" : "#F5B800";
+	const accent = question ? SCENARIO_ACCENT[question.scenario] || "#E85328" : "#E85328";
 
 	if (error) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center px-4">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center px-4">
 				<div className="max-w-md text-center">
 					<div className="font-serif text-[24px] text-white mb-2">Couldn't load this quiz</div>
 					<div className="font-sans text-[14px] text-[#888] mb-6">{error}</div>
-					<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#F5B800] hover:underline">Back to launcher →</Link>
+					<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#E85328] hover:underline">Back to launcher →</Link>
 				</div>
 			</main>
 		);
@@ -236,7 +236,7 @@ export default function QuizRunner() {
 
 	if (!question) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading…</div>
 			</main>
 		);
@@ -247,13 +247,13 @@ export default function QuizRunner() {
 	// crash the entire app on `choices.map`. Show a useful error instead.
 	if (!Array.isArray(question.choices) || question.choices.length !== 4) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center px-4">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center px-4">
 				<div className="max-w-md text-center">
 					<div className="font-serif text-[24px] text-white mb-2">This question is broken</div>
 					<div className="font-sans text-[14px] text-[#888] mb-6">
 						The data for question {currentIndex + 1} is malformed and we couldn't render it. Pick another drill — and ping the project owner with the quiz URL so they can clean up the bad row.
 					</div>
-					<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#F5B800] hover:underline">Back to launcher →</Link>
+					<Link href="/claude-code/quiz" className="font-sans text-[13px] text-[#E85328] hover:underline">Back to launcher →</Link>
 				</div>
 			</main>
 		);
@@ -263,11 +263,11 @@ export default function QuizRunner() {
 	const timeWarning = timeLeftSec !== null && timeLeftSec < 300;
 
 	return (
-		<main className="min-h-dvh bg-[#0a0a0a] text-[#e8e8e8]">
-			<div className="sticky top-0 z-10 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1a1a1a]">
+		<main className="min-h-dvh bg-[#1C1C1A] text-[#FAF8EA]">
+			<div className="sticky top-0 z-10 bg-[#1C1C1A]/90 backdrop-blur-md border-b border-[#2a2722]">
 				<div className="max-w-[760px] mx-auto px-6 h-14 flex items-center justify-between">
 					<Link href="/" className="flex items-center gap-2">
-						<span className="font-sans text-[13px] font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+						<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 						<span className="text-[#333] font-sans text-xs">/</span>
 						<span className="font-sans text-[13px] font-medium text-[#888] tracking-[0.04em]">Surpass</span>
 					</Link>
@@ -282,8 +282,8 @@ export default function QuizRunner() {
 						)}
 					</div>
 				</div>
-				<div className="h-1 bg-[#0a0a0a]">
-					<div className="h-full transition-all" style={{ width: `${progress}%`, backgroundColor: "#F5B800" }} />
+				<div className="h-1 bg-[#1C1C1A]">
+					<div className="h-full transition-all" style={{ width: `${progress}%`, backgroundColor: "#E85328" }} />
 				</div>
 			</div>
 
@@ -307,7 +307,7 @@ export default function QuizRunner() {
 						const isSelected = selected === c.key;
 						const isCorrectChoice = reveal && reveal.correct === c.key;
 						const isWrongChoice = reveal && selected === c.key && !reveal.isCorrect;
-						let borderColor = "#1a1a1a";
+						let borderColor = "#2a2722";
 						let bg = "#111";
 						let labelColor = "#555";
 						if (reveal) {
@@ -321,9 +321,9 @@ export default function QuizRunner() {
 								labelColor = "#ef4444";
 							}
 						} else if (isSelected) {
-							borderColor = "#F5B800";
-							bg = "#F5B80010";
-							labelColor = "#F5B800";
+							borderColor = "#E85328";
+							bg = "#E8532810";
+							labelColor = "#E85328";
 						}
 						return (
 							<button
@@ -347,12 +347,12 @@ export default function QuizRunner() {
 							type="button"
 							disabled={!selected || submitting}
 							onClick={submitAnswer}
-							className="w-full py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#e0a800] disabled:opacity-40 disabled:cursor-not-allowed"
+							className="w-full py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold transition-colors hover:bg-[#C7401C] disabled:opacity-40 disabled:cursor-not-allowed"
 						>
 							{submitting ? "Checking…" : "Submit answer"}
 						</button>
 						<p className="mt-3 text-center font-mono text-[11px] text-[#555]">
-							<kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1a] border border-[#2a2a2a] text-[#888]">1</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1a] border border-[#2a2a2a] text-[#888]">4</kbd> to pick · <kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1a] border border-[#2a2a2a] text-[#888]">Enter</kbd> to submit
+							<kbd className="px-1.5 py-0.5 rounded bg-[#2a2722] border border-[#2a2a2a] text-[#888]">1</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-[#2a2722] border border-[#2a2a2a] text-[#888]">4</kbd> to pick · <kbd className="px-1.5 py-0.5 rounded bg-[#2a2722] border border-[#2a2a2a] text-[#888]">Enter</kbd> to submit
 						</p>
 					</>
 				)}
@@ -375,7 +375,7 @@ export default function QuizRunner() {
 							<div className="font-sans text-[14px] text-[#ddd] leading-[1.65]">{reveal.explanation}</div>
 						</div>
 						{Object.entries(reveal.distractorRationales).length > 0 && (
-							<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-5">
+							<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-5">
 								<div className="font-sans text-[12px] font-semibold uppercase tracking-wider text-[#888] mb-3">Why the others are wrong</div>
 								<div className="space-y-2.5">
 									{(Object.keys(reveal.distractorRationales) as ("A" | "B" | "C" | "D")[]).map((k) => (
@@ -413,7 +413,7 @@ export default function QuizRunner() {
 						<button
 							type="button"
 							onClick={isLast ? finish : next}
-							className="w-full py-3.5 rounded-xl bg-[#F5B800] text-black font-sans text-[15px] font-bold hover:bg-[#e0a800]"
+							className="w-full py-3.5 rounded-xl bg-[#E85328] text-black font-sans text-[15px] font-bold hover:bg-[#C7401C]"
 						>
 							{isLast ? "See results →" : "Next question →"}
 						</button>
@@ -428,7 +428,7 @@ export default function QuizRunner() {
 									Thanks — we'll take a look.
 								</p>
 							) : reportOpen ? (
-								<div className="rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] p-4">
+								<div className="rounded-xl border border-[#2a2722] bg-[#0d0d0d] p-4">
 									<label className="block font-sans text-[11px] font-semibold text-[#888] uppercase tracking-[0.08em] mb-2">
 										What's off about this question?
 									</label>
@@ -437,7 +437,7 @@ export default function QuizRunner() {
 										onChange={(e) => setReportText(e.target.value)}
 										placeholder="Optional. e.g. 'stem and answer contradict' or 'two answers are correct'"
 										rows={3}
-										className="w-full px-3 py-2 rounded-lg bg-[#111] border border-[#1a1a1a] focus:border-[#F5B800] outline-none font-sans text-[13px] text-white placeholder:text-[#444] resize-none"
+										className="w-full px-3 py-2 rounded-lg bg-[#232220] border border-[#2a2722] focus:border-[#E85328] outline-none font-sans text-[13px] text-white placeholder:text-[#444] resize-none"
 									/>
 									{reportError && (
 										<p className="mt-2 font-sans text-[12px] text-red-400">{reportError}</p>
@@ -454,7 +454,7 @@ export default function QuizRunner() {
 											type="button"
 											onClick={submitReport}
 											disabled={reportSubmitting}
-											className="ml-auto px-4 py-2 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#3a3a3a] font-sans text-[13px] font-medium text-white disabled:opacity-40"
+											className="ml-auto px-4 py-2 rounded-lg bg-[#2a2722] border border-[#2a2a2a] hover:border-[#3a3a3a] font-sans text-[13px] font-medium text-white disabled:opacity-40"
 										>
 											{reportSubmitting ? "Sending…" : "Send report"}
 										</button>

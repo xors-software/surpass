@@ -52,7 +52,7 @@ export default function SessionPage() {
 	const isOscp = session?.educationLevel === "oscp"
 	const isClaude = session?.educationLevel === "claude-cert"
 
-	const accentColor = isOscp ? "#ef4444" : isClaude ? "#F5B800" : "#4f9cf7"
+	const accentColor = isOscp ? "#ef4444" : isClaude ? "#E85328" : "#4f9cf7"
 
 	const fetchSession = useCallback(async () => {
 		try {
@@ -194,7 +194,7 @@ export default function SessionPage() {
 
 	if (loadError) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="text-center">
 					<p className="font-sans text-[#888] mb-4">{loadError}</p>
 					<button type="button" onClick={() => router.push("/demo/classic")} className="font-sans text-sm text-[#4f9cf7] hover:underline">
@@ -207,7 +207,7 @@ export default function SessionPage() {
 
 	if (!session) {
 		return (
-			<main className="min-h-dvh bg-[#0a0a0a] flex items-center justify-center">
+			<main className="min-h-dvh bg-[#1C1C1A] flex items-center justify-center">
 				<div className="font-sans text-[#555] animate-pulse">Loading session...</div>
 			</main>
 		)
@@ -218,7 +218,7 @@ export default function SessionPage() {
 	const certLabel = isOscp ? "OSCP" : isClaude ? "Claude CCA" : "CISSP"
 
 	return (
-		<main className="h-dvh bg-[#0a0a0a] flex flex-col relative">
+		<main className="h-dvh bg-[#1C1C1A] flex flex-col relative">
 			{/* Solved banner */}
 			{solvedBanner && (
 				<div className="absolute top-0 left-0 right-0 z-50 animate-slide-down">
@@ -245,7 +245,7 @@ export default function SessionPage() {
 			{/* Header */}
 			<header className="shrink-0 border-b border-[#2a2a2a] px-4 py-2.5 flex items-center justify-between">
 				<div className="flex items-center gap-3">
-					<span className="font-sans text-xs font-bold text-[#F5B800] tracking-[0.08em] uppercase">XORS</span>
+					<span className="font-sans text-xs font-bold text-[#E85328] tracking-[0.08em] uppercase">XORS</span>
 					<span className="text-[#333] font-sans text-[10px]">/</span>
 					<span className="font-sans text-xs font-medium text-[#888]">Surpass</span>
 					<span className="w-px h-4 bg-[#2a2a2a]" />
@@ -260,7 +260,7 @@ export default function SessionPage() {
 					<button
 						type="button"
 						onClick={endSession}
-						className="font-sans text-xs font-medium px-3 py-1.5 rounded-md bg-[#141414] border border-[#2a2a2a] text-[#888] hover:text-white hover:border-[#555] transition-colors"
+						className="font-sans text-xs font-medium px-3 py-1.5 rounded-md bg-[#232220] border border-[#2a2a2a] text-[#888] hover:text-white hover:border-[#555] transition-colors"
 					>
 						End session
 					</button>
@@ -334,7 +334,7 @@ export default function SessionPage() {
 								<div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: accentColor + "20" }}>
 									<span className="font-mono text-xs font-bold" style={{ color: accentColor }}>M</span>
 								</div>
-								<div className="bg-[#141414] border border-[#2a2a2a] rounded-xl rounded-tl-sm px-4 py-3">
+								<div className="bg-[#232220] border border-[#2a2a2a] rounded-xl rounded-tl-sm px-4 py-3">
 									<div className="flex gap-1">
 										<span className="w-1.5 h-1.5 rounded-full bg-[#555] animate-bounce" style={{ animationDelay: "0ms" }} />
 										<span className="w-1.5 h-1.5 rounded-full bg-[#555] animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -354,7 +354,7 @@ export default function SessionPage() {
 					<div className="flex gap-2">
 						{isOscp ? (
 							// Terminal-style input for OSCP
-							<div className="flex-1 flex items-center bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-3 py-2.5 focus-within:border-[#ef4444]/50 transition-colors">
+							<div className="flex-1 flex items-center bg-[#1C1C1A] border border-[#2a2a2a] rounded-lg px-3 py-2.5 focus-within:border-[#ef4444]/50 transition-colors">
 								<span className="font-mono text-sm text-[#ef4444] mr-2 shrink-0 select-none">$</span>
 								<input
 									ref={inputRef}
@@ -376,14 +376,14 @@ export default function SessionPage() {
 								onKeyDown={(e) => e.key === "Enter" && sendMessage()}
 								placeholder="Type your answer or ask for help..."
 								disabled={sending}
-								className="flex-1 bg-[#141414] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none transition-colors disabled:opacity-50"
+								className="flex-1 bg-[#232220] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white font-sans text-[15px] placeholder:text-[#555] focus:outline-none transition-colors disabled:opacity-50"
 							/>
 						)}
 						<button
 							type="button"
 							onClick={() => sendHint()}
 							disabled={sending}
-							className="px-3 py-3 rounded-xl font-sans text-xs font-semibold transition-colors disabled:opacity-30 disabled:cursor-not-allowed bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#555]"
+							className="px-3 py-3 rounded-xl font-sans text-xs font-semibold transition-colors disabled:opacity-30 disabled:cursor-not-allowed bg-[#2a2722] border border-[#2a2a2a] hover:border-[#555]"
 							style={{ color: accentColor }}
 							title="Ask for a hint"
 						>
@@ -406,7 +406,7 @@ export default function SessionPage() {
 									key={cmd}
 									type="button"
 									onClick={() => setInput(cmd)}
-									className="font-mono text-[11px] px-2 py-1 rounded bg-[#111] border border-[#1a1a1a] text-[#ef4444]/60 hover:text-[#ef4444] hover:border-[#ef4444]/30 transition-colors"
+									className="font-mono text-[11px] px-2 py-1 rounded bg-[#232220] border border-[#2a2722] text-[#ef4444]/60 hover:text-[#ef4444] hover:border-[#ef4444]/30 transition-colors"
 								>
 									{cmd}
 								</button>
@@ -455,13 +455,13 @@ function TerminalBlock({ msg }: { msg: SessionMsg }) {
 					{msg.diagrams.map((svg, i) => (
 						<div
 							key={`diagram-${i}`}
-							className="bg-[#0a0a0a] rounded-lg p-3 border border-[#ef4444]/20"
+							className="bg-[#1C1C1A] rounded-lg p-3 border border-[#ef4444]/20"
 							dangerouslySetInnerHTML={{ __html: svg }}
 						/>
 					))}
 				</div>
 			)}
-			<div className="mt-2 border-b border-[#1a1a1a]" />
+			<div className="mt-2 border-b border-[#2a2722]" />
 		</div>
 	)
 }
@@ -472,10 +472,10 @@ function RenderTerminalContent({ text }: { text: string }) {
 	let html = text
 	// Code blocks: ```...```
 	html = html.replace(/```(\w*)\n?([\s\S]*?)```/g, (_m, _lang, code) =>
-		`<pre class="my-2 px-3 py-2 rounded bg-[#111] border border-[#1a1a1a] font-mono text-[13px] text-[#22c55e] overflow-x-auto">${code.trim()}</pre>`
+		`<pre class="my-2 px-3 py-2 rounded bg-[#232220] border border-[#2a2722] font-mono text-[13px] text-[#22c55e] overflow-x-auto">${code.trim()}</pre>`
 	)
 	// Inline code: `...`
-	html = html.replace(/`([^`]+)`/g, '<code class="px-1 py-0.5 rounded bg-[#111] text-[#22c55e] font-mono text-[13px]">$1</code>')
+	html = html.replace(/`([^`]+)`/g, '<code class="px-1 py-0.5 rounded bg-[#232220] text-[#22c55e] font-mono text-[13px]">$1</code>')
 	// Bold
 	html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
 	// Newlines
@@ -502,21 +502,21 @@ function ChatBubble({ msg, accentColor }: { msg: SessionMsg; accentColor: string
 				<div
 					className={`rounded-xl px-4 py-3 ${
 						isTutor
-							? "bg-[#141414] border border-[#2a2a2a] rounded-tl-sm"
+							? "bg-[#232220] border border-[#2a2a2a] rounded-tl-sm"
 							: "rounded-tr-sm"
 					}`}
 					style={!isTutor ? { backgroundColor: accentColor + "15", borderWidth: 1, borderStyle: "solid", borderColor: accentColor + "30" } : undefined}
 				>
 					<RenderMath
 						text={msg.content}
-						className={`font-sans text-[15px] leading-relaxed ${isTutor ? "text-[#e8e8e8]" : "text-white text-left"}`}
+						className={`font-sans text-[15px] leading-relaxed ${isTutor ? "text-[#FAF8EA]" : "text-white text-left"}`}
 					/>
 					{msg.diagrams && msg.diagrams.length > 0 && (
 						<div className="mt-3 space-y-3">
 							{msg.diagrams.map((svg, i) => (
 								<div
 									key={`diagram-${i}`}
-									className="bg-[#0a0a0a] rounded-lg p-3 border border-[#2a2a2a]"
+									className="bg-[#1C1C1A] rounded-lg p-3 border border-[#2a2a2a]"
 									dangerouslySetInnerHTML={{ __html: svg }}
 								/>
 							))}
@@ -544,11 +544,11 @@ function renderMathInText(text: string): string {
 
 	// Code blocks
 	result = result.replace(/```(\w*)\n?([\s\S]*?)```/g, (_m, _lang, code) =>
-		`<pre class="my-2 px-3 py-2 rounded-lg bg-[#111] border border-[#1a1a1a] font-mono text-[13px] text-[#22c55e] overflow-x-auto whitespace-pre-wrap">${code.trim()}</pre>`
+		`<pre class="my-2 px-3 py-2 rounded-lg bg-[#232220] border border-[#2a2722] font-mono text-[13px] text-[#22c55e] overflow-x-auto whitespace-pre-wrap">${code.trim()}</pre>`
 	)
 
 	// Inline code
-	result = result.replace(/`([^`]+)`/g, '<code class="px-1 py-0.5 rounded bg-[#111] text-[#22c55e] font-mono text-[13px]">$1</code>')
+	result = result.replace(/`([^`]+)`/g, '<code class="px-1 py-0.5 rounded bg-[#232220] text-[#22c55e] font-mono text-[13px]">$1</code>')
 
 	result = result.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
 

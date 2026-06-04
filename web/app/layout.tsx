@@ -3,7 +3,7 @@ import "./custom.css"
 import { cn } from "@/utils/cn"
 import { APP_CONFIG } from "@/config"
 import type { Metadata } from "next"
-import { NewsreaderFont, DMSansFont, DMMonoFont } from "@/fonts/fonts"
+import { InstrumentSerifFont, DMSansFont, DMMonoFont } from "@/fonts/fonts"
 import { Toaster } from "@/components/toasts/Toaster"
 import AnalyticsProvider from "./components/AnalyticsProvider"
 
@@ -30,8 +30,8 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang="en" className={cn(NewsreaderFont.variable, DMSansFont.variable, DMMonoFont.variable)}>
-			<body className="font-serif antialiased bg-[#0a0a0a] text-[#e8e8e8]">
+		<html lang="en" className={cn(InstrumentSerifFont.variable, DMSansFont.variable, DMMonoFont.variable)}>
+			<body className="font-serif antialiased bg-[#1C1C1A] text-[#FAF8EA]">
 				<AnalyticsProvider>
 					{children}
 					<Toaster />
