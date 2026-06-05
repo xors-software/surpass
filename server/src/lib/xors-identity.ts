@@ -1,38 +1,32 @@
-// Bridge between the centralized XORS identity service (api.xors.xyz)
-// and Surpass's local data model.
+// Bridge between the centralized XORS identity service (api.xors.xyz) and
+// Surpass's local data model.
 //
-// Background: Surpass used to have its own users table with email +
-// password. Now api.xors.xyz owns identity for all the XORS apps —
-// Surpass keeps a thin local users row only as the FK target for its
-// own data (quizzes, generated_questions, etc.). On every authenticated
-// request we:
+// The find-by-xorsId → find-by-email (legacy) → create ordering and the
+// session-cookie + viewer-fetch plumbing now live in the shared SDK
+// (`@xors-software/identity`). This module supplies the Surpass-specific
+// `IdentityStore` adapter (the SQL against the local `users` table) and keeps
+// the legacy `reps_session` fallback for users who predate xors centralization.
 //
-//   1. Read the `xors_session` cookie set by web/app/oauth/route.ts.
-//   2. Hit api.xors.xyz/api/users/viewer with that as `X-API-KEY` to
-//      resolve the current user.
-//   3. Find the local Surpass row by xors_user_id, falling back to
-//      email for legacy rows that predate this change. Stamp the
-//      xors_user_id on legacy hits so step (3) finds them next time.
-//   4. Create a new local row if neither lookup matches.
-//
-// The local row mirrors a small subset of viewer fields (email,
-// display name) — kept in sync on each successful viewer fetch so
-// renames at the xors level eventually propagate.
+// Surpass keeps a thin local users row only as the FK target for its own data
+// (quizzes, generated_questions, etc.); email + display name are mirrored from
+// the viewer and resynced on drift.
 
-import { sql } from "./pg";
+import {
+	createIdentityBridge,
+	type IdentityStore,
+} from "@xors-software/identity";
 import { getUserBySession, readSessionToken } from "./auth";
+import { sql } from "./pg";
 
 const XORS_API_URL =
 	process.env.XORS_API_URL ||
 	process.env.NEXT_PUBLIC_XORS_API_URL ||
 	"https://api.xors.xyz";
 
-const XORS_SESSION_COOKIE_NAME = "xors_session";
-
 export interface SurpassUser {
 	// Surpass-internal id used by every FK in the local schema. NEVER the
-	// xors viewer.id directly — keeping a stable indirection means we
-	// could swap providers later without rewriting every quizzes.user_id.
+	// xors viewer.id directly — keeping a stable indirection means we could
+	// swap providers later without rewriting every quizzes.user_id.
 	id: string;
 	email: string;
 	displayName: string | null;
@@ -40,57 +34,8 @@ export interface SurpassUser {
 	xorsUserId: string;
 }
 
-interface XorsViewer {
-	id: string;
-	email?: string;
-	username?: string | null;
-	level?: string | number | null;
-}
-
 function generateLocalUserId(): string {
 	return `usr_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
-}
-
-// Pull the xors_session cookie out of a Cookie header. Mirrors the
-// parseCookies helper in lib/auth.ts but lives here to avoid making the
-// xors flow depend on the (soon-to-be-deprecated) password auth module.
-function readXorsSessionCookie(headers: Headers): string | null {
-	const raw = headers.get("cookie");
-	if (!raw) return null;
-	for (const piece of raw.split(";")) {
-		const eq = piece.indexOf("=");
-		if (eq === -1) continue;
-		const k = piece.slice(0, eq).trim();
-		if (k !== XORS_SESSION_COOKIE_NAME) continue;
-		const v = piece.slice(eq + 1).trim();
-		try {
-			return decodeURIComponent(v);
-		} catch {
-			return v;
-		}
-	}
-	return null;
-}
-
-async function fetchXorsViewer(sessionKey: string): Promise<XorsViewer | null> {
-	if (!sessionKey) return null;
-	try {
-		const res = await fetch(`${XORS_API_URL}/api/users/viewer`, {
-			method: "GET",
-			headers: { "X-API-KEY": sessionKey, "Content-Type": "application/json" },
-		});
-		if (!res.ok) return null;
-		const body = (await res.json()) as { viewer?: XorsViewer };
-		const v = body.viewer;
-		if (!v || typeof v.id !== "string") return null;
-		return v;
-	} catch (err) {
-		console.error(
-			"[xors] viewer fetch failed:",
-			err instanceof Error ? err.message : err,
-		);
-		return null;
-	}
 }
 
 interface LocalUserRow {
@@ -107,112 +52,106 @@ function rowToUser(r: LocalUserRow): SurpassUser {
 		email: r.email,
 		displayName: r.display_name,
 		createdAt: r.created_at,
-		// The cast is safe because every code path that returns a
-		// SurpassUser has just ensured xors_user_id is set.
+		// Safe: every path returning a SurpassUser has ensured xors_user_id is set.
 		xorsUserId: r.xors_user_id as string,
 	};
 }
 
 /**
- * Find or create the local Surpass user backing the given xors viewer.
- *
- * Order:
- *   1. Lookup by xors_user_id — the steady-state path.
- *   2. Lookup by email — finds legacy rows from before this column
- *      existed. We stamp the xors_user_id during the same call so the
- *      next request takes path (1).
- *   3. Insert a fresh row.
- *
- * The viewer's email is also written through to keep the local copy
- * fresh in case it changed at the xors level.
+ * Maps a XORS viewer onto Surpass's local `users` table. The SDK bridge owns
+ * the lookup ordering and calls these in order: findByXorsId → (refreshDrift)
+ * → findByEmail → linkExistingByEmail → create. `viewer` is the SDK's
+ * NormalizedViewer ({ xorsId, email (lowercased), displayName }).
  */
-async function upsertFromViewer(viewer: XorsViewer): Promise<SurpassUser> {
-	const email = (viewer.email ?? "").toLowerCase();
-	const displayName = viewer.username ?? null;
+const surpassUserStore: IdentityStore<SurpassUser> = {
+	async findByXorsId(xorsId) {
+		const rows = await sql<LocalUserRow[]>`
+			SELECT id, email, display_name, created_at, xors_user_id
+			FROM users WHERE xors_user_id = ${xorsId}
+		`;
+		return rows.length > 0 ? rowToUser(rows[0]) : null;
+	},
 
-	// 1. By xors_user_id (steady state)
-	const bySub = await sql<LocalUserRow[]>`
-		SELECT id, email, display_name, created_at, xors_user_id
-		FROM users WHERE xors_user_id = ${viewer.id}
-	`;
-	if (bySub.length > 0) {
-		const r = bySub[0];
-		// Refresh email/display_name lazily if they drifted at xors.
-		if (email && (r.email !== email || r.display_name !== displayName)) {
+	async refreshDrift(user, viewer) {
+		// Lazily resync email/display_name if they changed at the xors level.
+		if (
+			viewer.email &&
+			(user.email !== viewer.email || user.displayName !== viewer.displayName)
+		) {
 			await sql`
-				UPDATE users SET email = ${email}, display_name = ${displayName}
-				WHERE id = ${r.id}
+				UPDATE users SET email = ${viewer.email}, display_name = ${viewer.displayName}
+				WHERE id = ${user.id}
 			`;
-			r.email = email;
-			r.display_name = displayName;
+			return { ...user, email: viewer.email, displayName: viewer.displayName };
 		}
-		return rowToUser(r);
-	}
+		return user;
+	},
 
-	// 2. By email (legacy migration path)
-	if (email) {
-		const byEmail = await sql<LocalUserRow[]>`
+	async findByEmail(email) {
+		const rows = await sql<LocalUserRow[]>`
 			SELECT id, email, display_name, created_at, xors_user_id
 			FROM users WHERE email = ${email}
 		`;
-		if (byEmail.length > 0) {
-			const r = byEmail[0];
-			await sql`
-				UPDATE users
-				SET xors_user_id = ${viewer.id},
-				    display_name = COALESCE(${displayName}, display_name)
-				WHERE id = ${r.id}
-			`;
-			r.xors_user_id = viewer.id;
-			if (displayName) r.display_name = displayName;
-			return rowToUser(r);
-		}
-	}
+		return rows.length > 0 ? rowToUser(rows[0]) : null;
+	},
 
-	// 3. Fresh row
-	const id = generateLocalUserId();
-	const inserted = await sql<LocalUserRow[]>`
-		INSERT INTO users (id, email, display_name, xors_user_id)
-		VALUES (${id}, ${email}, ${displayName}, ${viewer.id})
-		RETURNING id, email, display_name, created_at, xors_user_id
-	`;
-	return rowToUser(inserted[0]);
-}
+	async linkExistingByEmail(user, viewer) {
+		// Stamp the xors id onto a legacy row found by email.
+		await sql`
+			UPDATE users
+			SET xors_user_id = ${viewer.xorsId},
+			    display_name = COALESCE(${viewer.displayName}, display_name)
+			WHERE id = ${user.id}
+		`;
+		return {
+			...user,
+			xorsUserId: viewer.xorsId,
+			displayName: viewer.displayName ?? user.displayName,
+		};
+	},
+
+	async create(viewer) {
+		const id = generateLocalUserId();
+		const inserted = await sql<LocalUserRow[]>`
+			INSERT INTO users (id, email, display_name, xors_user_id)
+			VALUES (${id}, ${viewer.email}, ${viewer.displayName}, ${viewer.xorsId})
+			RETURNING id, email, display_name, created_at, xors_user_id
+		`;
+		return rowToUser(inserted[0]);
+	},
+};
+
+const identityBridge = createIdentityBridge(surpassUserStore, {
+	apiUrl: XORS_API_URL,
+});
 
 /**
  * Resolve the current user. Two paths during the migration window:
  *
- *   1. xors_session cookie → fetch viewer from api.xors.xyz, upsert local
- *      (the steady-state for all post-migration users).
- *   2. reps_session cookie → fall back to the legacy local auth_sessions
- *      lookup (for users who pre-date xors centralization and haven't
- *      been manually migrated yet).
+ *   1. xors_session cookie → SDK bridge fetches the viewer from api.xors.xyz
+ *      and find-or-creates the local row (steady state for post-migration users).
+ *   2. reps_session cookie → legacy local auth_sessions lookup (users who
+ *      predate xors centralization and haven't been migrated yet).
  *
- * If both are present, xors wins. Returns null if neither resolves —
- * routes that require auth then 401.
+ * If both are present, xors wins. Returns null if neither resolves.
  */
 export async function resolveCurrentUser(
 	headers: Headers,
 ): Promise<SurpassUser | null> {
-	// 1. xors path
-	const sessionKey = readXorsSessionCookie(headers);
-	if (sessionKey) {
-		const viewer = await fetchXorsViewer(sessionKey);
-		if (viewer) {
-			try {
-				return await upsertFromViewer(viewer);
-			} catch (err) {
-				console.error(
-					"[xors] local user upsert failed for viewer",
-					viewer.id,
-					err instanceof Error ? err.message : err,
-				);
-				// Fall through to local — better than 401'ing if local works.
-			}
-		}
+	// 1. xors path — the bridge returns null when there's no xors_session
+	//    cookie or the viewer doesn't resolve, so we fall through to legacy.
+	try {
+		const user = await identityBridge.resolveUserFromHeaders(headers);
+		if (user) return user;
+	} catch (err) {
+		console.error(
+			"[xors] identity bridge failed:",
+			err instanceof Error ? err.message : err,
+		);
+		// Fall through to local — better than 401'ing if local resolves.
 	}
 
-	// 2. legacy local path
+	// 2. legacy local path (reps_session)
 	const repsToken = readSessionToken(headers);
 	if (!repsToken) return null;
 	const localUser = await getUserBySession(repsToken);
@@ -222,10 +161,8 @@ export async function resolveCurrentUser(
 		email: localUser.email,
 		displayName: localUser.displayName,
 		createdAt: localUser.createdAt,
-		// Legacy users don't have a xors id yet — they sign in with their
-		// local password, never having authenticated via xors. The empty
-		// string is a flag the rest of the app can ignore (nothing reads
-		// xorsUserId outside this module).
+		// Legacy users have no xors id yet. Empty string is a flag the rest of
+		// the app ignores (nothing reads xorsUserId outside this module).
 		xorsUserId: "",
 	};
 }
