@@ -26,15 +26,31 @@ export function XorsIconmark({ className, style }: { className?: string; style?:
  * wordmark, per the brandbook. Drop-in replacement for the old text-only
  * wordmark in page headers.
  */
-export function BrandMark({ className }: { className?: string }) {
+export function BrandMark({
+	className,
+	variant = "dark",
+}: {
+	className?: string
+	/** "dark" (default) for ink backgrounds; "light" for paper/cream backgrounds. */
+	variant?: "light" | "dark"
+}) {
+	// Iconmark + "XORS" stay orange in both; only the secondary wordmark grays
+	// flip so the lockup reads on either background.
+	const slashColor = variant === "light" ? "#A89F8B" : "#5b564d"
+	const wordColor = variant === "light" ? "#6B665C" : "#9b9488"
 	return (
 		<span className={`inline-flex items-center gap-2 ${className ?? ""}`}>
 			<XorsIconmark style={{ height: 15, width: "auto", color: "#E85328" }} />
 			<span className="font-sans text-[13px] font-bold text-[#E85328] tracking-[0.08em] uppercase">
 				XORS
 			</span>
-			<span className="font-sans text-xs text-[#5b564d]">/</span>
-			<span className="font-sans text-[13px] font-medium text-[#9b9488] tracking-[0.04em]">
+			<span className="font-sans text-xs" style={{ color: slashColor }}>
+				/
+			</span>
+			<span
+				className="font-sans text-[13px] font-medium tracking-[0.04em]"
+				style={{ color: wordColor }}
+			>
 				Surpass
 			</span>
 		</span>
