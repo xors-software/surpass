@@ -10,7 +10,7 @@
       "dependencies": {
         "@anthropic-ai/sdk": "^0.77.0",
         "@elysiajs/swagger": "^1.2.3",
-        "@xors-software/identity": "^0.1.0",
+        "@xors-software/identity": "^0.1.1",
         "elysia": "^1.3.2",
         "pdf-parse": "1.1.1",
         "postgres": "^3.4.9",
@@ -29,8 +29,8 @@
         "@radix-ui/react-slot": "^1.2.4",
         "@tanstack/react-query": "^5.90.16",
         "@types/katex": "^0.16.8",
-        "@xors-software/identity": "^0.1.0",
-        "@xors-software/identity-next": "^0.1.0",
+        "@xors-software/identity": "^0.1.1",
+        "@xors-software/identity-next": "^0.1.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "katex": "^0.16.28",
@@ -605,9 +605,9 @@
 
     "@xobotyi/scrollbar-width": ["@xobotyi/scrollbar-width@1.9.5", "", {}, "sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ=="],
 
-    "@xors-software/identity": ["@xors-software/identity@0.1.0", "https://npm.pkg.github.com/download/@xors-software/identity/0.1.0/3f2eb56bf83e773f5e6cb2919ba240d1748492b4", {}, "sha512-t63O0LXegvFFQ8CtKedynWrslbjWpr2OiZeEK8cX0gASAyykU2QVfxTXDQ+HCwgL2+3WGpmgjrpOwaE1qev77A=="],
+    "@xors-software/identity": ["@xors-software/identity@0.1.1", "https://npm.pkg.github.com/download/@xors-software/identity/0.1.1/aa278376fefa0ff855c48aecfb3136a479fca7ac", {}, "sha512-mdBeBuWtNJ7z433ZvPBTT0UeueeCIfykOLCdKrpFzaOU+q1asi0Tpds9Dwid9RO9nrxvKoWOd5mYvzCZsjtYfQ=="],
 
-    "@xors-software/identity-next": ["@xors-software/identity-next@0.1.0", "https://npm.pkg.github.com/download/@xors-software/identity-next/0.1.0/b64f2d282a8c628b6575ed0550adbdf96e3c39db", { "dependencies": { "@xors-software/identity": "0.1.0" }, "peerDependencies": { "next": ">=14" } }, "sha512-XPr9NsdAAu7j73anEmjAGqWtqt0t9EiTonlg1IEJqsqp9/qmcD3mRYCimJ1vAruDSeh+EmO1/5REiKXdms6YXw=="],
+    "@xors-software/identity-next": ["@xors-software/identity-next@0.1.1", "https://npm.pkg.github.com/download/@xors-software/identity-next/0.1.1/9c4f329c1f16a6b1f2f594e5629015fbb7b696f3", { "dependencies": { "@xors-software/identity": "0.1.0" }, "peerDependencies": { "next": ">=14" } }, "sha512-b3FPkN/jQJYE0oHnX14HtbzO3DNtwWj/77xXztd5WnXjLgkNguyML+eOET+zYlxHtcLFavxdL/6QVdT8Y+jyvg=="],
 
     "agent-base": ["agent-base@7.1.4", "", {}, "sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ=="],
 
@@ -1336,6 +1336,8 @@
     "@vitest/runner/pathe": ["pathe@2.0.3", "", {}, "sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w=="],
 
     "@vitest/snapshot/pathe": ["pathe@2.0.3", "", {}, "sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w=="],
+
+    "@xors-software/identity-next/@xors-software/identity": ["@xors-software/identity@0.1.0", "https://npm.pkg.github.com/download/@xors-software/identity/0.1.0/3f2eb56bf83e773f5e6cb2919ba240d1748492b4", {}, "sha512-t63O0LXegvFFQ8CtKedynWrslbjWpr2OiZeEK8cX0gASAyykU2QVfxTXDQ+HCwgL2+3WGpmgjrpOwaE1qev77A=="],
 
     "csso/css-tree": ["css-tree@2.2.1", "", { "dependencies": { "mdn-data": "2.0.28", "source-map-js": "^1.0.1" } }, "sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA=="],
 
