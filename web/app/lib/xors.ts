@@ -69,25 +69,55 @@ export function buildXorsSignInUrl(nextPath?: string): string {
 	return `${base}/authenticate-google?${params.toString()}`;
 }
 
+const OAUTH_V2_PREFIX = "v2.";
+
 /**
- * Decrypt the AES-CTR-encrypted session key that api.xors.xyz hands us
- * on the /oauth?key=... callback. Mirrors the encryption in
- * apis/common/server.ts → `encrypt`.
+ * Decrypt the v2 (AES-256-GCM) session payload. Matches apis/common/server.ts
+ * `encryptV2` + @xors/identity: GCM key HKDF-derived from API_AES_KEY, wire
+ * format `v2.` + base64url(nonce ‖ ct ‖ tag). Throws on a bad auth tag.
+ */
+function decryptOAuthPayloadV2(payload: string): string {
+	const apiAes = process.env.API_AES_KEY;
+	if (!apiAes) throw new Error("API_AES_KEY is not set");
+	const aesKey = Buffer.from(apiAes, "utf8");
+	if (aesKey.length !== 32) {
+		throw new Error(`API_AES_KEY must be 32 utf-8 bytes (got ${aesKey.length})`);
+	}
+	const gcmKey = Buffer.from(
+		crypto.hkdfSync("sha256", aesKey, Buffer.alloc(0), "xors-oauth-gcm-v2", 32),
+	);
+	const raw = Buffer.from(payload.slice(OAUTH_V2_PREFIX.length), "base64url");
+	if (raw.length < 12 + 16) throw new Error("v2 payload too short");
+	const nonce = raw.subarray(0, 12);
+	const tag = raw.subarray(raw.length - 16);
+	const ct = raw.subarray(12, raw.length - 16);
+	const decipher = crypto.createDecipheriv("aes-256-gcm", gcmKey, nonce);
+	decipher.setAuthTag(tag);
+	return Buffer.concat([decipher.update(ct), decipher.final()]).toString("utf8");
+}
+
+/**
+ * Decrypt the session key api.xors.xyz hands us on the /oauth?key=... callback.
+ * Auto-detects the format: `v2.` → AES-256-GCM (secure), otherwise the legacy
+ * AES-256-CTR hex. The legacy path stays for sessions minted before api.xors.xyz
+ * cuts surpass.xors.xyz over to v2.
  *
- * Throws if either env var is missing or the input is malformed; callers
+ * Throws if a required env var is missing or the input is malformed; callers
  * should treat that as "couldn't sign in" and bounce back to /login.
  */
-export function decryptOAuthPayload(hex: string): string {
+export function decryptOAuthPayload(payload: string): string {
+	if (payload.startsWith(OAUTH_V2_PREFIX)) return decryptOAuthPayloadV2(payload);
+
 	const apiAes = process.env.API_AES_KEY;
 	const apiIv = process.env.API_IV_KEY;
 	if (!apiAes) throw new Error("API_AES_KEY is not set");
 	if (!apiIv) throw new Error("API_IV_KEY is not set");
 
-	// Key/IV byte derivation matches contractor-tracker exactly so a user
-	// signed in on one app gets a session key that decrypts here too.
+	// Legacy AES-256-CTR. Key/IV byte derivation matches the other XORS apps so a
+	// user signed in on one app gets a session key that decrypts here too.
 	const keyBytes = Buffer.from(apiAes, "utf8");
 	const ivBytes = Buffer.from(apiIv, "base64");
-	const ciphertext = Buffer.from(hex, "hex");
+	const ciphertext = Buffer.from(payload, "hex");
 	if (keyBytes.length !== 32) {
 		throw new Error(`API_AES_KEY must be 32 utf-8 bytes (got ${keyBytes.length})`);
 	}
