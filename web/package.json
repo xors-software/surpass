@@ -23,6 +23,8 @@
 		"@radix-ui/react-slot": "^1.2.4",
 		"@tanstack/react-query": "^5.90.16",
 		"@types/katex": "^0.16.8",
+		"@xors-software/identity": "^0.1.0",
+		"@xors-software/identity-next": "^0.1.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"katex": "^0.16.28",

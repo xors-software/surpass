@@ -35,6 +35,10 @@ import {
 	generateRecoveryCodes,
 	getRecoveryCodesStatus,
 } from "../lib/recovery-codes";
+import {
+	XORS_SESSION_COOKIE,
+	authenticateEmailPassword,
+} from "@xors-software/identity";
 import { resolveCurrentUser } from "../lib/xors-identity";
 
 const XORS_API_URL =
@@ -42,7 +46,6 @@ const XORS_API_URL =
 	process.env.NEXT_PUBLIC_XORS_API_URL ||
 	"https://api.xors.xyz";
 const XORS_AUTH_SOURCE = process.env.XORS_AUTH_SOURCE || "surpass.xors.xyz";
-const XORS_SESSION_COOKIE = "xors_session";
 // Match the 30-day cookie life set by the Next.js /oauth handler.
 const XORS_COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
 
@@ -69,28 +72,18 @@ function clearXorsCookie(): string {
 	return parts.join("; ");
 }
 
-// Try authenticating against api.xors.xyz. Returns the user's session
-// key on success, or null on any failure (network, wrong creds, etc.).
+// Authenticate against api.xors.xyz via the shared SDK. Returns the user's
+// session key on success, or null on any failure (network, wrong creds, etc.).
+// The SDK swallows network errors into an `{ error }` result.
 async function tryXorsAuthenticate(
 	email: string,
 	password: string,
 ): Promise<string | null> {
-	try {
-		const res = await fetch(`${XORS_API_URL}/api/users/authenticate`, {
-			method: "POST",
-			headers: { Accept: "application/json", "Content-Type": "application/json" },
-			body: JSON.stringify({ email, password, source: XORS_AUTH_SOURCE }),
-		});
-		if (!res.ok) return null;
-		const body = (await res.json()) as { user?: { key?: string } };
-		return body.user?.key ?? null;
-	} catch (err) {
-		console.error(
-			"[auth] xors authenticate failed:",
-			err instanceof Error ? err.message : err,
-		);
-		return null;
-	}
+	const result = await authenticateEmailPassword(email, password, {
+		apiUrl: XORS_API_URL,
+		source: XORS_AUTH_SOURCE,
+	});
+	return "key" in result ? result.key : null;
 }
 
 export const authRoutes = new Elysia({ prefix: "/auth" })
