@@ -1,14 +1,20 @@
 /**
- * OAuth callback handler. api.xors.xyz redirects users here after Google
- * consent with `?key=<encrypted>`; we decrypt it (the user's xors API key),
- * set it as an HttpOnly `xors_session` cookie, and bounce into the app.
+ * OAuth callback handler. After Google consent api.xors.xyz redirects users here
+ * with either
+ *   - `?token=<one-time token>` once surpass.xors.xyz is in the API's
+ *     ONE_TIME_TOKEN_DOMAINS (the API moved to better-auth): exchanged
+ *     server-side for the session token, or
+ *   - `?key=<encrypted>` (v2 AES-GCM payload, as before): decrypted.
+ * Either way the session token goes into the HttpOnly `xors_session` cookie and
+ * the user is bounced into the app.
  *
- * This is now a thin binding over `@xors-software/identity-next`'s
- * `createOAuthRouteHandler`, which owns the whole flow — forwarded-host
- * resolution (Railway proxies the internal host), v2/legacy auto-detecting
- * decrypt (keys from `API_AES_KEY` / `API_IV_KEY`), the `xors_session` cookie,
+ * This is a thin binding over `@xors-software/identity-next`'s
+ * `createOAuthRouteHandler` (>= 0.2.1), which owns the whole flow:
+ * forwarded-host resolution (Railway proxies the internal host), the token
+ * exchange (against `XORS_API_URL`), v2/legacy auto-detecting decrypt (keys
+ * from `API_AES_KEY` / `API_IV_KEY`), the `xors_session` cookie,
  * open-redirect-safe `next_hint` handling, and the `/login?error=…` failure
- * paths (`oauth_no_key` / `oauth_decrypt` / `oauth_empty_key`).
+ * paths (`oauth_token` / `oauth_no_key` / `oauth_decrypt` / `oauth_empty_key`).
  */
 
 import { createOAuthRouteHandler } from "@xors-software/identity-next";
