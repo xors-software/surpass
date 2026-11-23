@@ -3,7 +3,6 @@
 	"description": "Surpass — Anthropic Claude Code certification prep, scenario-based AI tutoring and mock exams.",
 	"version": "1.0.0",
 	"private": true,
-	"packageManager": "npm@11.6.2",
 	"scripts": {
 		"dev": "next dev --port 3000",
 		"turbo": "next dev --turbopack",
